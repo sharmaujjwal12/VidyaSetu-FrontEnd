@@ -20,9 +20,9 @@ function AddLecture() {
     examType.current.value=""
   };
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100 w-100">
+    <div className="flex justify-center items-center h-full bg-gray-100 min-w-310">
       <form action="" method="POST" encType="multipart/form-data">
-        <div className="bg-white shadow-lg rounded-2xl p-6 w-full max-w-md">
+        <div className="bg-white shadow-lg rounded-2xl p-6 m-10 w-full max-w-md">
           <h1 className="mb-5 text-2xl font-semibold text-gray-700 text-center">
             Upload Lectures Here
           </h1>
