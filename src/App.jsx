@@ -6,7 +6,7 @@ import { useState } from "react";
 import SideBar from "./Components/SideBar";
 import SignIn from "./Components/SignIn";
 import StudyItems from "./Components/StudyItems";
-import SignUp from "./Components/signUp";
+import SignUp from "./Components/SignUp";
 import PrepSetuContextProvider from "./store/PrepSetuContext";
 // import LatestNews from './Components/LatestNews'
 import LatestNews from "./Components/LatestNews";
