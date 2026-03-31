@@ -1,0 +1,15 @@
+.sideBarNavFooter{
+  display: flex;
+}
+.BoxesFooter{
+  display: flex;
+  padding: 15px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.studyItems{
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px;
+}

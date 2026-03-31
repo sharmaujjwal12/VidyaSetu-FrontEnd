@@ -1,0 +1,18 @@
+.password{
+  margin-top: 5px;
+}
+.mainContainer{
+  /* border: 1px solid black; */
+  margin-left: 20px;
+  width:720px;
+}
+.signInButton{
+  display: flex;
+  margin-top: 13px;
+  justify-content: center;
+  align-items: center;
+}
+.signIn{
+  width: 100%;
+  margin-left: 100px;
+}

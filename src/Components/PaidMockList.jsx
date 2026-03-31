@@ -1,0 +1,65 @@
+import { useState } from "react";
+import AttemptPaidMock from "./AttempPaidMock";
+
+function PaidMockList({ item,setSelectedMock}) {
+  let [nextComponent,setNextComponent] = useState(false);
+  let [examName,setExamName] = useState('');
+  if(nextComponent){
+    return <AttemptPaidMock examName={examName}/>
+  }
+  return (
+    <div className="w-72 rounded-2xl border border-gray-200 bg-white p-5 shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+
+      {/* Exam Title */}
+      <h1 className="text-lg font-semibold text-gray-800 mb-1">
+        {item.exam} <span className="text-gray-500">(March 2026)</span>
+      </h1>
+
+      <p className="text-sm text-gray-500 mb-4">
+        Remaining Attempts - 1
+      </p>
+
+      {/* Stats Section */}
+      <div className="flex justify-between text-center mb-5">
+
+        <div className="flex flex-col">
+          <h2 className="text-xl font-bold text-blue-600">
+            {item.duration}
+          </h2>
+          <p className="text-xs text-gray-500">Minutes</p>
+        </div>
+
+        <div className="flex flex-col">
+          <h2 className="text-xl font-bold text-green-600">
+            {item.marks}
+          </h2>
+          <p className="text-xs text-gray-500">Marks</p>
+        </div>
+
+        <div className="flex flex-col">
+          <h2 className="text-xl font-bold text-purple-600">
+            {item.questions}
+          </h2>
+          <p className="text-xs text-gray-500">Questions</p>
+        </div>
+
+      </div>
+
+      {/* Button */}
+      <button className="w-full rounded-lg bg-blue-500 py-2 text-white font-medium transition-all duration-300 hover:bg-blue-600 active:scale-95 mb-2" onClick={()=>{
+        setExamName(item.exam)
+        setNextComponent(true)
+      }
+        }>
+        Give Mock
+      </button>
+      <button className="w-full rounded-lg bg-orange-500 py-2 text-white font-medium transition-all duration-300 hover:bg-blue-600 active:scale-95" onClick={()=>
+        setSelectedMock(false)
+        }>
+        Back Page
+      </button>
+    </div>
+  );
+}
+
+export default PaidMockList;
