@@ -1,4 +1,4 @@
-import PaidTest from "./Paidtest";
+import PaidTest from "./PaidTest";
 import { useEffect, useState } from "react";
 import { getPaidMockData } from "../services/Backend";
 import Loader from "./Loader";
