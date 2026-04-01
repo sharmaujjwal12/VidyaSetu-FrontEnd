@@ -1,35 +1,7 @@
-// export const addItemToServer = async(task,date)=>{
-//    const response = await fetch("http://localhost:3000/api/todo",{
-//     method: "POST",
-//     headers : {
-//       "Content-Type" : "application/json",
-//     },
-//     body : JSON.stringify({task,date}),
-//    });
-//    const data = await response.json();
-//     console.log("Data at Service : ",data)
-//    return mapServerItemToLocalItem(data);
-// }
-
-// export let markItemCompleted = async(id)=>{
-//   let response = await fetch(`http://localhost:3000/api/todo/${id}/completed`,{
-//     method:"PUT",
-//   });
-//   const items = await response.json();
-//   return mapServerItemToLocalItem(items)
-// }
-
-// export let deleteItemFromServer = async(id)=>{
-//   let response = await fetch(`http://localhost:3000/api/todo/${id}`,{
-//     method:"DELETE",
-//   });
-//   if(!response.ok) throw new Error("Delete Failed")
-//     // const items = await response.json();
-//   // return items._id
-// }
+const BASE_URL = "https://vidyasetu-backend-6bkr.onrender.com";
 
 export let logoutFromServer = async (onLogout, email) => {
-  let response = await fetch("http://localhost:3000/api/Quiz/logout", {
+  let response = await fetch(`${BASE_URL}/api/Quiz/logout`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -49,7 +21,7 @@ export const addQuoteToServer = async (
   setLoader,
 ) => {
   console.log(quote, author);
-  let response = await fetch("http://localhost:3000/api/addQuote", {
+  let response = await fetch(`${BASE_URL}/api/addQuote`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -62,7 +34,7 @@ export const addQuoteToServer = async (
 };
 
 export const getQuoteFromServer = async (getQuotes) => {
-  let response = await fetch("http://localhost:3000/api/getQuote", {
+  let response = await fetch(`${BASE_URL}/api/getQuote`, {
     method: "GET",
   });
   let data = await response.json();
@@ -71,7 +43,7 @@ export const getQuoteFromServer = async (getQuotes) => {
 };
 export const getMockListFromServer = async (examName, questionsLists) => {
   let response = await fetch(
-    `http://localhost:3000/api/getMockLists/${examName}`,
+    `${BASE_URL}/api/getMockLists/${examName}`,
     {
       method: "GET",
     },
@@ -83,7 +55,7 @@ export const getMockListFromServer = async (examName, questionsLists) => {
 };
 export const getPaidMockListFromServer = async (examName, questionsLists) => {
   let response = await fetch(
-    `http://localhost:3000/api/getPaidMockLists/${examName}`,
+    `${BASE_URL}/api/getPaidMockLists/${examName}`,
     {
       method: "GET",
     },
@@ -105,7 +77,7 @@ export const signUpToServer = async (
   onSuccessSigned,
   errorWhileSignedUp,
 ) => {
-  const response = await fetch("http://localhost:3000/api/Quiz/signUp", {
+  const response = await fetch(`${BASE_URL}/api/Quiz/signUp`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -139,7 +111,7 @@ export const loginToServer = async (
   errorWhileLogin,
 ) => {
   console.log("Email Pass At LoginServer : ", email, password);
-  const response = await fetch("http://localhost:3000/api/Quiz/login", {
+  const response = await fetch(`${BASE_URL}/api/Quiz/login`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -159,7 +131,7 @@ export const loginToServer = async (
 };
 
 export const addMockToServer = async (name, noOfMock, MockAddSuccess) => {
-  const response = await fetch(`http://localhost:3000/api/addMock`, {
+  const response = await fetch(`${BASE_URL}/api/addMock`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -171,7 +143,7 @@ export const addMockToServer = async (name, noOfMock, MockAddSuccess) => {
   console.log("Data From Server While AddMock : ", data);
 };
 export const addPaidMockToServer = async (name, noOfMock, MockAddSuccess) => {
-  const response = await fetch(`http://localhost:3000/api/addPaidMock`, {
+  const response = await fetch(`${BASE_URL}/api/addPaidMock`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -190,7 +162,7 @@ export const addMockDetailToServer = async (
   marks,
   setMockDetailAdded,
 ) => {
-  const response = await fetch(`http://localhost:3000/api/addMockDetails`, {
+  const response = await fetch(`${BASE_URL}/api/addMockDetails`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -207,7 +179,7 @@ export const addPaidMockDetailToServer = async (
   marks,
   setMockDetailAdded,
 ) => {
-  const response = await fetch(`http://localhost:3000/api/addPaidMockDetails`, {
+  const response = await fetch(`${BASE_URL}/api/addPaidMockDetails`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -224,7 +196,7 @@ export const addQuestionToServer = async (
   correctAnswer,
   setQuestionAdded,
 ) => {
-  const response = await fetch(`http://localhost:3000/api/addQuestion`, {
+  const response = await fetch(`${BASE_URL}/api/addQuestion`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -241,7 +213,7 @@ export const addPaidQuestionToServer = async (
   correctAnswer,
   setQuestionAdded,
 ) => {
-  const response = await fetch(`http://localhost:3000/api/addPaidQuestion`, {
+  const response = await fetch(`${BASE_URL}/api/addPaidQuestion`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -262,9 +234,9 @@ export const uploadVideoToServer = async (
   formData.append("video", videoFile); // file
   formData.append("examType", examType); // text field
   formData.append("lectureType", lectureType);
-  console.log(`http://localhost:3000/api/uploadVideo/${examType}`);
+  console.log(`${BASE_URL}/api/uploadVideo/${examType}`);
   const response = await fetch(
-    `http://localhost:3000/api/uploadVideo/${examType}`,
+    `${BASE_URL}/api/uploadVideo/${examType}`,
     {
       method: "POST",
       body: formData,
@@ -282,11 +254,8 @@ export const postRoadmapToServer = async (
 ) => {
   const formData = new FormData();
   formData.append("roadMapPdf", roadMapPdf);
-  console.log(
-    `http://localhost:3000/api/uploadVideo/${roadMapType} ${roadMapPdf}`,
-  );
   const response = await fetch(
-    `http://localhost:3000/api/postRoadMap/${roadMapType}`,
+    `${BASE_URL}/api/postRoadMap/${roadMapType}`,
     {
       method: "POST",
       body: formData,
@@ -301,7 +270,7 @@ export const addLectureDetailsToServer = async (
   addedSuccess,
 ) => {
   console.log("Exam Bhaiya : ", examName, lectureType);
-  const response = await fetch(`http://localhost:3000/api/addLectureDetails`, {
+  const response = await fetch(`${BASE_URL}/api/addLectureDetails`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json", // important!
@@ -314,7 +283,7 @@ export const addLectureDetailsToServer = async (
 
 export const getLectureDetailsFromServer = async (examName, getDetails) => {
   const response = await fetch(
-    `http://localhost:3000/api/getLectureDetails/${examName}`,
+    `${BASE_URL}/api/getLectureDetails/${examName}`,
     {
       method: "GET",
     },
@@ -324,7 +293,7 @@ export const getLectureDetailsFromServer = async (examName, getDetails) => {
 };
 export const getRoadMapFromServer = async (roadMapType) => {
   const response = await fetch(
-    `http://localhost:3000/api/getRoadMap/${roadMapType}`,
+    `${BASE_URL}/api/getRoadMap/${roadMapType}`,
     {
       method: "GET",
     },
@@ -334,7 +303,7 @@ export const getRoadMapFromServer = async (roadMapType) => {
 };
 
 export const getRoadMapWithoutCondition = async (methodData) => {
-  const response = await fetch(`http://localhost:3000/api/getRoadMap`, {
+  const response = await fetch(`${BASE_URL}/api/getRoadMap`, {
     method: "GET",
   });
   let data = await response.json();
@@ -342,7 +311,7 @@ export const getRoadMapWithoutCondition = async (methodData) => {
 };
 export const getVideosFromServer = async (examName,lectureType, videosMethod) => {
   const response = await fetch(
-    `http://localhost:3000/api/getVideos/${examName}?lectureType=${lectureType}`,
+    `${BASE_URL}/api/getVideos/${examName}?lectureType=${lectureType}`,
     {
       method: "GET",
     },
@@ -352,7 +321,7 @@ export const getVideosFromServer = async (examName,lectureType, videosMethod) =>
   console.log("Videos From Backend : ", data);
 };
 export const getNewsFromServer = async (getNews) => {
-  const response = await fetch(`http://localhost:3000/api/news/getNews`, {
+  const response = await fetch(`${BASE_URL}/api/news/getNews`, {
     method: "GET",
   });
   let data = await response.json();
@@ -361,7 +330,7 @@ export const getNewsFromServer = async (getNews) => {
 };
 
 export const deleteMockFromServer = async (id, setDeleteMockMessage) => {
-  const response = await fetch(`http://localhost:3000/api/deleteMock/${id}`, {
+  const response = await fetch(`${BASE_URL}/api/deleteMock/${id}`, {
     method: "POST",
     body: JSON.stringify({ id }),
   });
@@ -371,7 +340,7 @@ export const deleteMockFromServer = async (id, setDeleteMockMessage) => {
 };
 export const editMockAtServer = async (id, noOfMock) => {
   console.log("AAYA BHAI");
-  const response = await fetch(`http://localhost:3000/api/editMock/${id}`, {
+  const response = await fetch(`${BASE_URL}/api/editMock/${id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -383,7 +352,7 @@ export const editMockAtServer = async (id, noOfMock) => {
 };
 export const editPaidMockAtServer = async (id, noOfMock) => {
   console.log("AAYA BHAI");
-  const response = await fetch(`http://localhost:3000/api/editPaidMock/${id}`, {
+  const response = await fetch(`${BASE_URL}/api/editPaidMock/${id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -394,7 +363,7 @@ export const editPaidMockAtServer = async (id, noOfMock) => {
   console.log("Data From Server While Paid Edit : ", data);
 };
 export const getMockData = async (getMock) => {
-  const response = await fetch(`http://localhost:3000/api/getMock`, {
+  const response = await fetch(`${BASE_URL}/api/getMock`, {
     method: "GET",
   });
   let data = await response.json();
@@ -402,7 +371,7 @@ export const getMockData = async (getMock) => {
   console.log("Data From Backend : ", data);
 };
 export const getPaidMockData = async (getMock) => {
-  const response = await fetch(`http://localhost:3000/api/getPaidMock`, {
+  const response = await fetch(`${BASE_URL}/api/getPaidMock`, {
     method: "GET",
   });
   let data = await response.json();
@@ -412,7 +381,7 @@ export const getPaidMockData = async (getMock) => {
 export const getMockDetailsFromServer = async (getMockDetail, mockName) => {
   console.log("MockName : ", mockName);
   const response = await fetch(
-    `http://localhost:3000/api/getMockDetails/${mockName}`,
+    `${BASE_URL}/api/getMockDetails/${mockName}`,
     {
       method: "GET",
     },
@@ -424,7 +393,7 @@ export const getMockDetailsFromServer = async (getMockDetail, mockName) => {
 export const getPaidMockDetailsFromServer = async (getMockDetail, mockName) => {
   console.log("MockName : ", mockName);
   const response = await fetch(
-    `http://localhost:3000/api/getPaidMockDetails/${mockName}`,
+    `${BASE_URL}/api/getPaidMockDetails/${mockName}`,
     {
       method: "GET",
     },
