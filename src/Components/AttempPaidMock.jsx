@@ -4,15 +4,17 @@ import {getPaidMockListFromServer } from "../services/Backend";
 function AttemptPaidMock({ examName }) {
   let [questions, setQuestions] = useState([]);
   useEffect(() => {
+     if (!examName) return; // wait until examName is set
     const mockQuestions = (data) => {
-      console.log("Hello Jiiiiiii")
-      console.log("Data1 : ",data);
-      console.log("Data2 : ",data[0]);
-      console.log("Data2 : ",data[0].question);
-      setQuestions(data);
+      if (!data || data.length === 0) {
+      console.error("No questions received from backend!");
+      setQuestions([]);
+      return;
     };
+    setQuestions(data);
+  }
     getPaidMockListFromServer(examName, mockQuestions);
-  }, []);
+  }, [examName]);
   let [selectedOption, setSelectedOption] = useState("");
   let [nextQuestion, setNextQuestion] = useState(0);
   let [score, setScore] = useState(0);
