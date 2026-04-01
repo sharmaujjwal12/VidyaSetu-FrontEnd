@@ -9,7 +9,7 @@ function PaidMockList({ item,setSelectedMock}) {
   }
   return (
     <div className="w-72 rounded-2xl border border-gray-200 bg-white p-5 shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
-
+     
       {/* Exam Title */}
       <h1 className="text-lg font-semibold text-gray-800 mb-1">
         {item.exam} <span className="text-gray-500">(March 2026)</span>

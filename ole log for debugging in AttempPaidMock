@@ -1,0 +1,61 @@
+[1mdiff --git a/src/Components/AttempPaidMock.jsx b/src/Components/AttempPaidMock.jsx[m
+[1mindex a3197b5..5f3fef5 100644[m
+[1m--- a/src/Components/AttempPaidMock.jsx[m
+[1m+++ b/src/Components/AttempPaidMock.jsx[m
+[36m@@ -5,6 +5,7 @@[m [mfunction AttemptPaidMock({ examName }) {[m
+   let [questions, setQuestions] = useState([]);[m
+   useEffect(() => {[m
+     const mockQuestions = (data) => {[m
+[32m+[m[32m      console.log("Hello Jiiiiiii")[m
+       console.log("Data1 : ",data);[m
+       console.log("Data2 : ",data[0]);[m
+       console.log("Data2 : ",data[0].question);[m
+[36m@@ -17,10 +18,11 @@[m [mfunction AttemptPaidMock({ examName }) {[m
+   let [score, setScore] = useState(0);[m
+   return questions.length <= nextQuestion ? ([m
+     <div className="flex justify-center items-center min-h-[60vh]">[m
+[32m+[m[32m      {console.log("Attempt me ",examName)}[m
+       <div className="w-[420px] bg-white border border-gray-200 shadow-xl rounded-2xl p-8 text-center">[m
+         {/* Title */}[m
+         <h1 className="text-2xl font-bold text-gray-800 mb-6">Test Result</h1>[m
+[31m-[m
+[32m+[m[41m    [m
+         {/* Score */}[m
+         <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-5">[m
+           <p className="text-gray-600 text-sm mb-1">Your Score</p>[m
+[1mdiff --git a/src/Components/PaidMockList.jsx b/src/Components/PaidMockList.jsx[m
+[1mindex 111c67f..21362b4 100644[m
+[1m--- a/src/Components/PaidMockList.jsx[m
+[1m+++ b/src/Components/PaidMockList.jsx[m
+[36m@@ -9,7 +9,7 @@[m [mfunction PaidMockList({ item,setSelectedMock}) {[m
+   }[m
+   return ([m
+     <div className="w-72 rounded-2xl border border-gray-200 bg-white p-5 shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-1">[m
+[31m-[m
+[32m+[m[41m     [m
+       {/* Exam Title */}[m
+       <h1 className="text-lg font-semibold text-gray-800 mb-1">[m
+         {item.exam} <span className="text-gray-500">(March 2026)</span>[m
+[1mdiff --git a/src/services/Backend.js b/src/services/Backend.js[m
+[1mindex d0a1cb6..3d2d6da 100644[m
+[1m--- a/src/services/Backend.js[m
+[1m+++ b/src/services/Backend.js[m
+[36m@@ -54,16 +54,17 @@[m [mexport const getMockListFromServer = async (examName, questionsLists) => {[m
+   questionsLists(data);[m
+ };[m
+ export const getPaidMockListFromServer = async (examName, questionsLists) => {[m
+[32m+[m[32m  console.log("AAYA Paid mw : ",examName);[m
+   let response = await fetch([m
+     `${BASE_URL}/api/getPaidMockLists/${examName}`,[m
+     {[m
+       method: "GET",[m
+[32m+[m[32m      credentials: "include"[m[41m [m
+     },[m
+   );[m
+   let data = await response.json();[m
+   console.log("MockLists : ", data);[m
+   questionsLists(data);[m
+[31m-  return data;[m
+ };[m
+ [m
+ export const signUpToServer = async ([m

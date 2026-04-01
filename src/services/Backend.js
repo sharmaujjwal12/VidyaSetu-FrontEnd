@@ -54,16 +54,17 @@ export const getMockListFromServer = async (examName, questionsLists) => {
   questionsLists(data);
 };
 export const getPaidMockListFromServer = async (examName, questionsLists) => {
+  console.log("AAYA Paid mw : ",examName);
   let response = await fetch(
     `${BASE_URL}/api/getPaidMockLists/${examName}`,
     {
       method: "GET",
+      credentials: "include" 
     },
   );
   let data = await response.json();
   console.log("MockLists : ", data);
   questionsLists(data);
-  return data;
 };
 
 export const signUpToServer = async (

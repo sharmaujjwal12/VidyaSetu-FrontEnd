@@ -39,7 +39,7 @@ let PrepSetuContextProvider = (props) => {
   let [mockDetailAdded,setMockDetailAdded] = useState('')
   const studyMaterials = [
     { title: "CGL", description: "Live Classes For Complete Preperation" },
-    { title: "UP POLICE", description: "Live Classes For Complete Preperation" },
+    { title: "UPSC", description: "Live Classes For Complete Preperation" },
   ];
   const dataFromServer = (data) =>{
       setquoteAdded(data)

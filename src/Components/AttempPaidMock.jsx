@@ -5,6 +5,7 @@ function AttemptPaidMock({ examName }) {
   let [questions, setQuestions] = useState([]);
   useEffect(() => {
     const mockQuestions = (data) => {
+      console.log("Hello Jiiiiiii")
       console.log("Data1 : ",data);
       console.log("Data2 : ",data[0]);
       console.log("Data2 : ",data[0].question);
@@ -17,10 +18,11 @@ function AttemptPaidMock({ examName }) {
   let [score, setScore] = useState(0);
   return questions.length <= nextQuestion ? (
     <div className="flex justify-center items-center min-h-[60vh]">
+      {console.log("Attempt me ",examName)}
       <div className="w-[420px] bg-white border border-gray-200 shadow-xl rounded-2xl p-8 text-center">
         {/* Title */}
         <h1 className="text-2xl font-bold text-gray-800 mb-6">Test Result</h1>
-
+    
         {/* Score */}
         <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-5">
           <p className="text-gray-600 text-sm mb-1">Your Score</p>

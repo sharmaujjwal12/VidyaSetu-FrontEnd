@@ -6,7 +6,7 @@ import mockTestLogo from "./images/MockTest.png";
 import RoadmapLogo from "./images/RoadMaps.png";
 import { useState } from "react";
 
-function FrontPage({ title,latestNewsHandler,motivationHandler,setLiveClassClicked,setSubmitClick,setMainPage,roadMapHandler,setMockClicked}) {
+function FrontPage({ title,latestNewsHandler,motivationHandler,setLiveClassClicked,setSubmitClick,setMainPage,roadMapHandler,setMockClicked,setRecordedClass}) {
   return (
     <>
     <div className="p-6min-h-screen">
@@ -52,7 +52,11 @@ function FrontPage({ title,latestNewsHandler,motivationHandler,setLiveClassClick
             <h1 className="text-lg font-semibold text-gray-700 mb-3">
               Recorded Classes Shown Here
             </h1>
-            <button className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition">
+            <button className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition" onClick={()=>{
+              setMainPage(false)
+              setRecordedClass(true)
+              setSubmitClick(false);
+              }}>
               Click to View
             </button>
           </div>
