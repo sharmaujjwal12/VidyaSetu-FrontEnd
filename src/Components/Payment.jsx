@@ -10,7 +10,7 @@ function PaymentPage({ selectedMock, setShowPayment }) {
   }, []);
 
   const handlePayment = async () => {
-    const response = await fetch("http://localhost:3000/api/createOrder", {
+    const response = await fetch("https://vidyasetu-backend-6bkr.onrender.com/api/createOrder", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -38,7 +38,7 @@ function PaymentPage({ selectedMock, setShowPayment }) {
   };
 
   return (
-    <div className="min-h-[70vh] flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 px-4">
+    <div className="min-h-[70vh] flex items-center justify-center px-4">
       
       <div className="bg-white w-[380px] rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
 

@@ -46,12 +46,12 @@ export const getMockListFromServer = async (examName, questionsLists) => {
     `${BASE_URL}/api/getMockLists/${examName}`,
     {
       method: "GET",
+       credentials: "include" 
     },
   );
   let data = await response.json();
-  console.log("MockLists : ", data);
+  console.log("Dtata : ",data);
   questionsLists(data);
-  return data;
 };
 export const getPaidMockListFromServer = async (examName, questionsLists) => {
   let response = await fetch(
