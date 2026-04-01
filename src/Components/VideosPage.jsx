@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getVideosFromServer } from "../services/Backend";
 
-function VideosPage({ examName }) {
+function VideosPage({ examName,lectureType }) {
   let [video, setVideo] = useState([]);
   let [videoSeries, setVideoSeries] = useState(1);
 
@@ -9,7 +9,7 @@ function VideosPage({ examName }) {
     const videosMethod = (data) => {
       setVideo(data);
     };
-    getVideosFromServer(examName, videosMethod);
+    getVideosFromServer(examName,lectureType, videosMethod);
   }, [examName]);
 
   return (
@@ -30,7 +30,7 @@ function VideosPage({ examName }) {
           >
             {/* Video */}
             <video
-              src={`http://localhost:3000${encodeURI(item.videoUrl)}`}
+              src={item.videoUrl}
               controls
               className="w-full rounded-lg"
             />

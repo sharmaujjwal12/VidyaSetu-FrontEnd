@@ -1,44 +1,44 @@
 import { useRef } from "react";
+import Loader from "./Loader";
+import { useState } from "react";
 
-function SignIn({LoginClicked,loginErrors}) {
+function SignIn({ LoginClicked, loginErrors }) {
   let email = useRef();
   let password = useRef();
-  const onLoggedInClicked = (action)=>{
+  let [loader,setLoader] = useState(false);
+  const onLoggedInClicked = (action) => {
     action.preventDefault();
-    LoginClicked(email.current.value,password.current.value);
-  }
+    LoginClicked(email.current.value, password.current.value);
+  };
+
   return (
-    <div className="h-screen flex items-center justify-center bg-gradient-to-br w-2xl from-blue-50 via-white to-blue-100 px-4">
+    <div className="min-h-screen flex items-center justify-center px-4 py-8">
       
       {/* Card */}
-      <div className="w-full max-w-md rounded-2xl bg-white shadow-xl border border-gray-200 p-8 transition-all duration-300 hover:shadow-2xl">
-        
+      <div className="w-full max-w-sm sm:max-w-md md:max-w-lg 
+      border border-gray-200 rounded-2xl shadow-lg 
+      p-6 sm:p-8 bg-white">
+
         {/* Logo */}
         <div className="flex justify-center mb-6">
-          <img
-            src="/docs/5.3/assets/brand/bootstrap-logo.svg"
-            alt="Logo"
-            width="72"
-            height="57"
-            className="drop-shadow-md"
-          />
         </div>
 
         {/* Heading */}
-        <h1 className="text-center text-2xl font-bold text-gray-800 mb-2">
-          Please sign in
+        <h1 className="text-xl sm:text-2xl font-bold text-gray-800 text-center mb-2">
+          Please Sign In
         </h1>
-        <p className="text-center text-sm text-gray-500 mb-6">
-          Welcome back! Login to continue
+
+        <p className="text-sm text-gray-500 text-center mb-6">
+          Welcome back! Login to continue 🚀
         </p>
 
-         {/* Errors */}
-          {loginErrors?.length > 0 && (
-          <div className="mb-6 rounded-xl border border-red-200 bg-red-50 p-4 animate-fade-in">
-            <h3 className="mb-3 flex items-center gap-2 text-sm font-semibold text-red-700">
-              <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-red-600 text-white text-xs">
-                !
-              </span>
+         {/**Loader */}
+        <div className="mb-5">{loader === true && <Loader/>}</div>
+
+        {/* Errors */}
+        {loginErrors?.length > 0 && (
+          <div className="mb-6 rounded-xl border border-red-200 p-4">
+            <h3 className="mb-3 text-sm font-semibold text-red-700">
               Please fix the following errors
             </h3>
 
@@ -46,10 +46,9 @@ function SignIn({LoginClicked,loginErrors}) {
               {loginErrors.map((item, index) => (
                 <li
                   key={index}
-                  className="flex items-start gap-2 rounded-lg bg-white px-3 py-2 text-sm text-red-600 shadow-sm transition hover:shadow-md"
+                  className="rounded-lg px-3 py-2 text-sm text-red-600 border"
                 >
-                  <span className="mt-0.5 text-red-500">•</span>
-                  <span>{item}</span>
+                  • {item}
                 </li>
               ))}
             </ul>
@@ -58,53 +57,47 @@ function SignIn({LoginClicked,loginErrors}) {
 
         {/* Form */}
         <form>
+
           {/* Email */}
           <div className="mb-4">
-            <label
-              htmlFor="floatingInput"
-              className="block text-sm font-medium text-gray-600 mb-1"
-            >
-              Email address
+            <label className="block text-sm font-medium text-gray-600 mb-1">
+              Email Address
             </label>
+
             <input
               type="email"
               ref={email}
-              name="email"
-              id="floatingInput"
               placeholder="name@example.com"
-              className="w-full rounded-xl border border-gray-300 px-4 py-2 text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+              className="w-full rounded-xl border border-gray-300 
+              px-4 py-2 focus:ring-2 focus:ring-blue-500 
+              focus:outline-none transition"
             />
           </div>
 
           {/* Password */}
-          <div className="mb-4">
-            <label
-              htmlFor="floatingPassword"
-              className="block text-sm font-medium text-gray-600 mb-1"
-            >
+          <div className="mb-5">
+            <label className="block text-sm font-medium text-gray-600 mb-1">
               Password
             </label>
+
             <input
               ref={password}
               type="password"
-              name="password"
-              id="floatingPassword"
-              placeholder="Password"
-              className="w-full rounded-xl border border-gray-300 px-4 py-2 text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+              placeholder="Enter password"
+              className="w-full rounded-xl border border-gray-300 
+              px-4 py-2 focus:ring-2 focus:ring-blue-500 
+              focus:outline-none transition"
             />
           </div>
 
-          {/* Remember Me */}
+          {/* Remember me */}
           <div className="flex items-center mb-6">
             <input
               type="checkbox"
-              id="checkDefault"
-              className="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+              className="h-4 w-4 text-blue-500"
             />
-            <label
-              htmlFor="checkDefault"
-              className="ml-2 text-sm text-gray-600"
-            >
+
+            <label className="ml-2 text-sm text-gray-600">
               Remember me
             </label>
           </div>
@@ -112,18 +105,26 @@ function SignIn({LoginClicked,loginErrors}) {
           {/* Button */}
           <button
             type="submit"
-            className="w-full rounded-xl bg-blue-500 py-2.5 text-white font-semibold transition-all duration-300 hover:bg-blue-600 hover:shadow-md active:scale-95"
-            onClick={(action)=>{onLoggedInClicked(action) }}
+            onClick={(action) => {
+              onLoggedInClicked(action)
+              setLoader(true);
+            }}
+            className="w-full rounded-xl bg-blue-500 
+            py-2.5 text-white font-semibold 
+            hover:bg-blue-600 
+            transition duration-300"
           >
-            Sign in
+            Sign In
           </button>
 
           {/* Footer */}
           <p className="mt-6 text-center text-xs text-gray-400">
-            © 2017–2025
+            © 2025 VidyaSetu. All rights reserved.
           </p>
+
         </form>
       </div>
+
     </div>
   );
 }

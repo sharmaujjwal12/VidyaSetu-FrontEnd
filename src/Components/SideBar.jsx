@@ -15,8 +15,8 @@ function SideBar({
   customerCareHandler,
   freeTestHost,
   freeTestHostHandler,
+  role,
 }) {
-
   // 🔥 Reusable Nav Item (Modular)
   const SideNavItem = ({ active, onClick, icon, label }) => (
     <li>
@@ -31,7 +31,11 @@ function SideBar({
             : "text-gray-300 hover:bg-gray-800 hover:text-white"
         }`}
       >
-        <svg width="18" height="18" className="transition-transform group-hover:scale-110">
+        <svg
+          width="18"
+          height="18"
+          className="transition-transform group-hover:scale-110"
+        >
           <use xlinkHref={icon}></use>
         </svg>
         <span className="text-sm font-medium">{label}</span>
@@ -45,7 +49,6 @@ function SideBar({
       bg-gradient-to-b from-gray-900 via-gray-800 to-gray-950
       border-r border-gray-700 shadow-2xl mr-0`}
     >
-      
       {/* Logo Section */}
       <a
         href="/"
@@ -61,55 +64,53 @@ function SideBar({
 
       {/* Navigation */}
       <ul className="flex flex-col gap-2 flex-1">
-
+        {role === "user" && (
+          <div>
+            {" "}
+            <SideNavItem
+              active={homePage === true}
+              onClick={homePageHandler}
+              icon="#home"
+              label="Home"
+            />
+            <SideNavItem
+              active={liveClass === true}
+              onClick={liveClassHandler}
+              icon="#speedometer2"
+              label="Live Class"
+            />
+            <SideNavItem
+              active={paidTest === true}
+              onClick={paidTestHandler}
+              icon="#table"
+              label="Weekly Paid Mock Test"
+            />
+            <SideNavItem
+              active={freeTest === true}
+              onClick={freeTestHandler}
+              icon="#grid"
+              label="Weekly Free Mock Test"
+            />
+            <SideNavItem
+              active={recordedClass === true}
+              onClick={RecordedClassHandler}
+              icon="#grid"
+              label="Recorded Class"
+            />
+            <SideNavItem
+              active={customerCare === true}
+              onClick={customerCareHandler}
+              icon="#people-circle"
+              label="Customers"
+            />
+          </div>
+        )}
         <SideNavItem
-          active={homePage === true}
-          onClick={homePageHandler}
-          icon="#home"
-          label="Home"
-        />
-
-        <SideNavItem
-          active={liveClass === true}
-          onClick={liveClassHandler}
-          icon="#speedometer2"
-          label="Live Class"
-        />
-
-        <SideNavItem
-          active={paidTest === true}
-          onClick={paidTestHandler}
-          icon="#table"
-          label="Weekly Paid Mock Test"
-        />
-
-        <SideNavItem
-          active={freeTest === true}
-          onClick={freeTestHandler}
-          icon="#grid"
-          label="Weekly Free Mock Test"
-        />
-        <SideNavItem
-          active={ freeTestHost=== true}
+          active={freeTestHost === true}
           onClick={freeTestHostHandler}
           icon="#grid"
           label="Host Free Mock Test"
         />
-
-        <SideNavItem
-          active={recordedClass === true}
-          onClick={RecordedClassHandler}
-          icon="#grid"
-          label="Recorded Class"
-        />
-
-        <SideNavItem
-          active={customerCare === true}
-          onClick={customerCareHandler}
-          icon="#people-circle"
-          label="Customers"
-        />
-
       </ul>
 
       <div className="border-t border-gray-700 mt-6"></div>

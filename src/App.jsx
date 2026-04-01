@@ -36,21 +36,27 @@ import AddRoadMaps from "./Components/AddRoadMaps";
 import AddMockPaid from "./Components/AddMockPaid";
 import AddMockDetailsPaid from "./Components/AddMockDetailsPaid";
 import AddPaidQuestions from "./Components/AddPaidQuestion";
+import AddLectureDetails from "./Components/AddLectureDetails";
 
 function App() {
   let [enterQuestion, setEnterQuestion] = useState(false);
   let [signUpErrors, setSignUpErrors] = useState([]);
   let [loginErrors, setLoginErrors] = useState([]);
   let [loginButton, setLoginButton] = useState(false);
+  let [addLectureDetails, setAddLectureDetails] = useState(false);
   let [addRoadMaps, setAddRoadMaps] = useState(false);
   let [addMockTest, setAddMockTest] = useState(false);
   let [isLoggedIn, setisLoggedIn] = useState(false);
+  let [role, setRole] = useState('');
   let [signUpButton, setSignButton] = useState(false);
   let [useremail, setUserEmail] = useState("");
   let [quotes, setQuotes] = useState([]);
   useEffect(() => {
     const loginStatus = localStorage.getItem("isLoggedIn");
-
+    const role = localStorage.getItem("role");
+    if(role){
+      setRole(role);
+    }
     if (loginStatus === "true") {
       setisLoggedIn(true);
     }
@@ -119,9 +125,11 @@ function App() {
   const errorWhileSignedUp = (errors, oldInputs) => {
     setSignUpErrors(errors);
   };
-  const onSuccessLogin = (dataFromBackend, email) => {
+  const onSuccessLogin = (dataFromBackend, email,role) => {
     setisLoggedIn(dataFromBackend);
+    console.log("Role Bhaii : ",role);
     localStorage.setItem("isLoggedIn", "true");
+    localStorage.setItem("role", role);
     setUserEmail(email);
     localStorage.setItem("email", email);
     if (dataFromBackend === true) {
@@ -153,6 +161,7 @@ function App() {
     password,
     confirmPassword,
     gender,
+    role,
   ) => {
     signUpToServer(
       firstName,
@@ -161,6 +170,7 @@ function App() {
       password,
       confirmPassword,
       gender,
+      role,
       onSuccessSigned,
       errorWhileSignedUp,
     );
@@ -173,6 +183,7 @@ function App() {
   let login = () => {
     setLoginButton(true);
     setAddMockDetails(false);
+     setAddLectureDetails(false);
     setAddPaidTest(false);
     setAddPaidTestDetails(false);
     setAddMockTest(false);
@@ -197,6 +208,7 @@ function App() {
   };
   let lectureHandler = () => {
     setAddLecture(true);
+     setAddLectureDetails(false);
     setLoginButton(false);
     setAddPaidQuestion(false);
     setAddMockDetails(false);
@@ -234,6 +246,33 @@ function App() {
     setAddQuotes(false);
     setCustomerCare(false);
     setFreeTest(false);
+     setAddLectureDetails(false);
+    setPaidTest(false);
+    setRecordedClass(false);
+    setLiveClass(false);
+    console.log("Login Button in App Clicked", loginButton);
+    setHomePage(false);
+    setLatestNews(false);
+    setRoadMap(false);
+    setOurProducts(false);
+    setMotivation(false);
+    setSignButton(false);
+  };
+  let addLectureDetailsHandler = () => {
+    setAddLectureDetails(true);
+    setAddMockDetails(false);
+    setLoginButton(false);
+    setAddPaidQuestion(false);
+    setAddPaidTest(false);
+    setAddPaidTestDetails(false);
+    setAddLecture(false);
+    setAddRoadMaps(false);
+    setAddMockTest(false);
+    setEnterQuestion(false);
+    setFreeTestHost(false);
+    setAddQuotes(false);
+    setCustomerCare(false);
+    setFreeTest(false);
     setPaidTest(false);
     setRecordedClass(false);
     setLiveClass(false);
@@ -248,6 +287,7 @@ function App() {
   let signup = () => {
     setSignButton(true);
     setEnterQuestion(false);
+     setAddLectureDetails(false);
     setAddPaidQuestion(false);
     setAddPaidTest(false);
     setAddPaidTestDetails(false);
@@ -272,6 +312,7 @@ function App() {
   };
   let addQuestionHandler = () => {
     setEnterQuestion(true);
+     setAddLectureDetails(false);
     setHomePage(false);
     setAddRoadMaps(false);
     setAddLecture(false);
@@ -297,6 +338,7 @@ function App() {
   };
   let addPaidQuestionHandler = () => {
     setAddPaidQuestion(true);
+     setAddLectureDetails(false);
     setEnterQuestion(false);
     setHomePage(false);
     setAddRoadMaps(false);
@@ -322,6 +364,7 @@ function App() {
   };
   let homePageHandler = () => {
     setHomePage(true);
+     setAddLectureDetails(false);
     setAddQuotes(false);
     setAddPaidTest(false);
     setAddPaidTestDetails(false);
@@ -348,6 +391,7 @@ function App() {
   };
   let latestNewsHandler = () => {
     setLatestNews(true);
+     setAddLectureDetails(false);
     setCustomerCare(false);
     setAddPaidQuestion(false);
     setAddPaidTest(false);
@@ -372,6 +416,7 @@ function App() {
   let roadMapHandler = () => {
     setRoadMap(true);
     setAddMockTest(false);
+     setAddLectureDetails(false);
     setAddPaidQuestion(false);
     setAddRoadMaps(false);
     setAddPaidTest(false);
@@ -397,6 +442,7 @@ function App() {
   let addMockHandler = () => {
     setAddMockTest(true);
     setRoadMap(false);
+     setAddLectureDetails(false);
     setAddPaidQuestion(false);
     setAddLecture(false);
     setAddRoadMaps(false);
@@ -422,6 +468,7 @@ function App() {
   let ourProductsHandler = () => {
     setOurProducts(true);
     setAddPaidQuestion(false);
+     setAddLectureDetails(false);
     setAddMockDetails(false);
     setAddPaidTest(false);
     setAddPaidTestDetails(false);
@@ -447,6 +494,7 @@ function App() {
   let motivationHandler = () => {
     setMotivation(true);
     setAddPaidQuestion(false);
+     setAddLectureDetails(false);
     setAddMockTest(false);
     setAddPaidTest(false);
     setAddPaidTestDetails(false);
@@ -473,6 +521,7 @@ function App() {
     setLiveClass(true);
     setFreeTestHost(false);
     setAddPaidQuestion(false);
+     setAddLectureDetails(false);
     setAddPaidTest(false);
     setAddPaidTestDetails(false);
     setAddLecture(false);
@@ -497,6 +546,7 @@ function App() {
     setRecordedClass(true);
     setAddMockTest(false);
     setAddPaidQuestion(false);
+     setAddLectureDetails(false);
     setAddPaidTest(false);
     setAddPaidTestDetails(false);
     setAddRoadMaps(false);
@@ -520,6 +570,7 @@ function App() {
   let customerCareHandler = () => {
     setCustomerCare(true);
     setAddQuotes(false);
+     setAddLectureDetails(false);
     setAddPaidQuestion(false);
     setAddPaidTest(false);
     setAddPaidTestDetails(false);
@@ -545,6 +596,7 @@ function App() {
     setPaidTest(true);
     setAddPaidTest(false);
     setAddPaidQuestion(false);
+     setAddLectureDetails(false);
     setAddPaidTestDetails(false);
     setAddMockDetails(false);
     setAddLecture(false);
@@ -576,6 +628,7 @@ function App() {
     setAddQuotes(false);
     setLiveClass(false);
     setFreeTestHost(false);
+     setAddLectureDetails(false);
     setEnterQuestion(false);
     setMotivation(false);
     setCustomerCare(false);
@@ -591,6 +644,7 @@ function App() {
   let addPaidTestDetailsHandler = () => {
     setAddPaidTestDetails(true);
     setAddPaidTest(false);
+     setAddLectureDetails(false);
     setAddPaidTest(false);
     setAddPaidQuestion(false);
     setPaidTest(false);
@@ -615,6 +669,7 @@ function App() {
   };
   let freeTestHandler = () => {
     setFreeTest(true);
+     setAddLectureDetails(false);
     setAddMockDetails(false);
     setAddLecture(false);
     setAddPaidQuestion(false);
@@ -639,6 +694,7 @@ function App() {
   };
   let freeTestHostHandler = () => {
     setFreeTestHost(true);
+     setAddLectureDetails(false);
     setAddLecture(false);
     setFreeTest(false);
     setAddPaidQuestion(false);
@@ -663,6 +719,7 @@ function App() {
   };
   let addQuotesHandler = () => {
     setAddQuotes(true);
+     setAddLectureDetails(false);
     setFreeTest(false);
     setAddPaidTest(false);
     setAddPaidQuestion(false);
@@ -687,6 +744,7 @@ function App() {
   };
   let addRoadMapHandler = () => {
     setAddRoadMaps(true);
+     setAddLectureDetails(false);
     setAddPaidTest(false);
     setAddPaidQuestion(false);
     setAddPaidTestDetails(false);
@@ -759,6 +817,7 @@ function App() {
               customerCareHandler={customerCareHandler}
               freeTestHost={freeTestHost}
               freeTestHostHandler={freeTestHostHandler}
+              role={role}
             />
           )}
           <div className="navFooter">
@@ -767,6 +826,7 @@ function App() {
               signup={signup}
               logoutClicked={logoutClicked}
               isLoggedIn={isLoggedIn}
+              role={role}
               loginButton={loginButton}
               signUpButton={signUpButton}
               latestNews={latestNews}
@@ -797,6 +857,8 @@ function App() {
               addPaidTestDetailsHandler={addPaidTestDetailsHandler}
               addPaidQuestion={addPaidQuestion}
               addPaidQuestionHandler={addPaidQuestionHandler}
+              addLectureDetails={addLectureDetails}
+              addLectureDetailsHandler={addLectureDetailsHandler}
             />
             <div className="BoxesFooter">
               {/* <Sliding/> */}
@@ -828,6 +890,7 @@ function App() {
                   {addPaidTest===true && <AddMockPaid addPaidEditMock={addPaidEditMock}/>}
                   {addPaidTestDetails===true && <AddMockDetailsPaid/>}
                   {addPaidQuestion===true && <AddPaidQuestions/>}
+                  {addLectureDetails===true && <AddLectureDetails/>}
                   {homePage === true && (
                     <StudyItems
                       latestNewsHandler={latestNewsHandler}

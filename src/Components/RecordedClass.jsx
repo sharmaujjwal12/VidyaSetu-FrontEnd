@@ -1,7 +1,7 @@
 import { useState } from "react";
 import logo from "./images/VidyaSetuBanner.jpg";
 
-function RecordedClass({ item, setVideosPage, setExamName }) {
+function RecordedClass({ item, setExamName,setChapters }) {
   return (
     <div className="flex flex-col justify-center p-6">
       {/* Card */}
@@ -26,7 +26,7 @@ function RecordedClass({ item, setVideosPage, setExamName }) {
           <button
             className="mt-3 bg-amber-500 hover:bg-amber-600 text-white py-2 rounded-lg transition"
             onClick={() => {
-              setVideosPage(true);
+             setChapters(true);
               setExamName(item);
             }}
           >

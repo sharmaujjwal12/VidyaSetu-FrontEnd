@@ -5,6 +5,7 @@ function NavBar({
   signup,
   logoutClicked,
   isLoggedIn,
+  role,
   latestNews,
   loginButton,
   signUpButton,
@@ -34,7 +35,9 @@ function NavBar({
   addPaidTestDetails,
   addPaidTestDetailsHandler,
    addPaidQuestion,
-   addPaidQuestionHandler
+   addPaidQuestionHandler,
+   addLectureDetails,
+   addLectureDetailsHandler
 }) {
   let onlatestNewsClick = () => {
     console.log("Latest News Clicked");
@@ -73,7 +76,8 @@ function NavBar({
 
         {/* Nav Items */}
         <ul className="flex flex-wrap justify-center gap-3 mt-4 lg:mt-0">
-          <li>
+          {role==="user" && <div className="flex flex-wrap">  
+            <li>
             <a
               href="#"
               className={navItemStyle(homePage === true)}
@@ -85,7 +89,6 @@ function NavBar({
               <span className="text-sm mt-1">Home</span>
             </a>
           </li>
-
           {isLoggedIn === true && (
             <li>
               <a
@@ -145,8 +148,22 @@ function NavBar({
               </a>
             </li>
           )}
-
-          {isLoggedIn === true && (
+</div>}
+          {/**Hosts Section */}
+          {role==="host" && <div className="flex flex-wrap">      
+             <li>
+            <a
+              href="#"
+              className={navItemStyle(homePage === true)}
+              onClick={homePageHandler}
+            >
+              <svg width="24" height="1">
+                <use xlinkHref="#home"></use>
+              </svg>
+              <span className="text-sm mt-1">Home</span>
+            </a>
+          </li>
+           {isLoggedIn === true && (
             <li>
               <a
                 href="#"
@@ -178,6 +195,20 @@ function NavBar({
             <li>
               <a
                 href="#"
+                className={navItemStyle(addLectureDetails === true)}
+                onClick={addLectureDetailsHandler}
+              >
+                <svg width="24" height="1">
+                  <use xlinkHref="#people-circle"></use>
+                </svg>
+                <span className="text-sm mt-1">Add Lectures Details</span>
+              </a>
+            </li>
+          )}
+          {isLoggedIn === true && (
+            <li>
+              <a
+                href="#"
                 className={navItemStyle(addRoadMaps === true)}
                 onClick={addRoadMapHandler}
               >
@@ -188,7 +219,7 @@ function NavBar({
               </a>
             </li>
           )}
-          <li>
+          {isLoggedIn ===true && <li>
             <a
               href="#"
               className={navItemStyle(addMockTest === true)}
@@ -199,8 +230,8 @@ function NavBar({
               </svg>
               <span className="text-sm mt-1">Add Free Mocks</span>
             </a>
-          </li>
-          <li>
+          </li>}
+          {isLoggedIn===true && <li>
             <a
               href="#"
               className={navItemStyle(addMockDetails=== true)}
@@ -211,8 +242,8 @@ function NavBar({
               </svg>
               <span className="text-sm mt-1">Add Free Mocks Details</span>
             </a>
-          </li>
-          <li>
+          </li>}
+          {isLoggedIn===true && <li>
             <a
               href="#"
               className={navItemStyle(addPaidTest === true)}
@@ -223,8 +254,8 @@ function NavBar({
               </svg>
               <span className="text-sm mt-1">Add Paid Mocks</span>
             </a>
-          </li>
-          <li>
+          </li>}
+          {isLoggedIn===true && <li>
             <a
               href="#"
               className={navItemStyle(addPaidTestDetails  === true)}
@@ -235,8 +266,8 @@ function NavBar({
               </svg>
               <span className="text-sm mt-1">Add Paid Mocks Details</span>
             </a>
-          </li>
-          <li>
+          </li>}
+          {isLoggedIn===true && <li>
             <a
               href="#"
               className={navItemStyle(enterQuestion === true)}
@@ -247,8 +278,8 @@ function NavBar({
               </svg>
               <span className="text-sm mt-1">Add Free Question</span>
             </a>
-          </li>
-          <li>
+          </li>}
+          {isLoggedIn===true && <li>
             <a
               href="#"
               className={navItemStyle(addPaidQuestion === true)}
@@ -259,7 +290,7 @@ function NavBar({
               </svg>
               <span className="text-sm mt-1">Add Paid Question</span>
             </a>
-          </li>
+          </li>}</div>}
         </ul>
       </div>
 

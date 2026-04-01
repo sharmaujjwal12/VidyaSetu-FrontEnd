@@ -56,8 +56,8 @@ let PrepSetuContextProvider = (props) => {
   const addPaidMockClicked = (name, noOfMock) => {
     addPaidMockToServer(name, noOfMock,MockAddSuccess);
   };
-  const deleteMock = (id) => {
-    deleteMockFromServer(id);
+  const deleteMock = (id,setDeleteMockMessage) => {
+    deleteMockFromServer(id,setDeleteMockMessage);
   };
   const editMock = (id, noOfMock) => {
     editMockAtServer(id, noOfMock);
