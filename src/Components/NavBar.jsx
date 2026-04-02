@@ -76,7 +76,7 @@ function NavBar({
 
         {/* Nav Items */}
         <ul className="flex flex-wrap justify-center gap-3 mt-4 lg:mt-0">
-          {role==="user" && <div className="flex flex-wrap">  
+          {isLoggedIn===true && role==="user" && <div className="flex flex-wrap">  
             <li>
             <a
               href="#"
@@ -150,7 +150,7 @@ function NavBar({
           )}
 </div>}
           {/**Hosts Section */}
-          {role==="host" && <div className="flex flex-wrap">      
+          {isLoggedIn===true && role==="host" && <div className="flex flex-wrap">      
              <li>
             <a
               href="#"

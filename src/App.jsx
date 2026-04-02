@@ -37,8 +37,10 @@ import AddMockPaid from "./Components/AddMockPaid";
 import AddMockDetailsPaid from "./Components/AddMockDetailsPaid";
 import AddPaidQuestions from "./Components/AddPaidQuestion";
 import AddLectureDetails from "./Components/AddLectureDetails";
+import MiddleLayoutAtLogin from "./Components/MiddleLayoutAtLogin";
 
 function App() {
+  let [middleLayout, setMiddleLayout] = useState(true);
   let [enterQuestion, setEnterQuestion] = useState(false);
   let [signUpErrors, setSignUpErrors] = useState([]);
   let [loginErrors, setLoginErrors] = useState([]);
@@ -59,6 +61,7 @@ function App() {
     }
     if (loginStatus === "true") {
       setisLoggedIn(true);
+      setMiddleLayout(false);
     }
   }, []);
   const getQuotes = (quotes) => {
@@ -152,6 +155,7 @@ function App() {
     const email = localStorage.getItem("email");
     console.log("User Emails : ", email);
     logoutFromServer(onLogout, email);
+     setMiddleLayout(true);
   };
 
   const signUpClicked = (
@@ -174,14 +178,18 @@ function App() {
       onSuccessSigned,
       errorWhileSignedUp,
     );
+     setMiddleLayout(false);
   };
   const LoginClicked = (email, password) => {
     loginToServer(email, password, onSuccessLogin, errorWhileLogin);
     console.log("Value At Login : ", email, password);
+     setMiddleLayout(false);
   };
+
 
   let login = () => {
     setLoginButton(true);
+    setMiddleLayout(false);
     setAddMockDetails(false);
      setAddLectureDetails(false);
     setAddPaidTest(false);
@@ -288,6 +296,7 @@ function App() {
     setSignButton(true);
     setEnterQuestion(false);
      setAddLectureDetails(false);
+     setMiddleLayout(false);
     setAddPaidQuestion(false);
     setAddPaidTest(false);
     setAddPaidTestDetails(false);
@@ -865,6 +874,7 @@ function App() {
 
               {/**isLoggedIn Started */}
 
+              {middleLayout===true && <MiddleLayoutAtLogin login={login} signup={signup}/>}
               {isLoggedIn === true && (
                 <div className="studyItems">
                   {ourProducts === true && <OurProducts />}

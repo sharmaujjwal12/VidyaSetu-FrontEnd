@@ -11,7 +11,7 @@ function AttemptPaidMock({ examName }) {
       setQuestions([]);
       return;
     };
-    setQuestions(data);
+    setQuestions(data.Questions);
   }
     getPaidMockListFromServer(examName, mockQuestions);
   }, [examName]);
