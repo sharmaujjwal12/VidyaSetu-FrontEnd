@@ -217,6 +217,7 @@ function App() {
   let lectureHandler = () => {
     setAddLecture(true);
      setAddLectureDetails(false);
+     setMiddleLayout(false)
     setLoginButton(false);
     setAddPaidQuestion(false);
     setAddMockDetails(false);
@@ -243,6 +244,7 @@ function App() {
   let mockDetailsHandler = () => {
     setAddMockDetails(true);
     setLoginButton(false);
+      setMiddleLayout(false)
     setAddPaidQuestion(false);
     setAddPaidTest(false);
     setAddPaidTestDetails(false);
@@ -268,6 +270,7 @@ function App() {
   };
   let addLectureDetailsHandler = () => {
     setAddLectureDetails(true);
+      setMiddleLayout(false)
     setAddMockDetails(false);
     setLoginButton(false);
     setAddPaidQuestion(false);
@@ -321,6 +324,7 @@ function App() {
   };
   let addQuestionHandler = () => {
     setEnterQuestion(true);
+      setMiddleLayout(false)
      setAddLectureDetails(false);
     setHomePage(false);
     setAddRoadMaps(false);
@@ -347,6 +351,7 @@ function App() {
   };
   let addPaidQuestionHandler = () => {
     setAddPaidQuestion(true);
+      setMiddleLayout(false)
      setAddLectureDetails(false);
     setEnterQuestion(false);
     setHomePage(false);
@@ -373,6 +378,7 @@ function App() {
   };
   let homePageHandler = () => {
     setHomePage(true);
+      setMiddleLayout(false)
      setAddLectureDetails(false);
     setAddQuotes(false);
     setAddPaidTest(false);
@@ -400,6 +406,7 @@ function App() {
   };
   let latestNewsHandler = () => {
     setLatestNews(true);
+      setMiddleLayout(false)
      setAddLectureDetails(false);
     setCustomerCare(false);
     setAddPaidQuestion(false);
@@ -424,6 +431,7 @@ function App() {
   };
   let roadMapHandler = () => {
     setRoadMap(true);
+      setMiddleLayout(false)
     setAddMockTest(false);
      setAddLectureDetails(false);
     setAddPaidQuestion(false);
@@ -450,6 +458,7 @@ function App() {
   };
   let addMockHandler = () => {
     setAddMockTest(true);
+      setMiddleLayout(false)
     setRoadMap(false);
      setAddLectureDetails(false);
     setAddPaidQuestion(false);
@@ -476,6 +485,7 @@ function App() {
   };
   let ourProductsHandler = () => {
     setOurProducts(true);
+      setMiddleLayout(false)
     setAddPaidQuestion(false);
      setAddLectureDetails(false);
     setAddMockDetails(false);
@@ -502,6 +512,7 @@ function App() {
   };
   let motivationHandler = () => {
     setMotivation(true);
+      setMiddleLayout(false)
     setAddPaidQuestion(false);
      setAddLectureDetails(false);
     setAddMockTest(false);
@@ -528,6 +539,7 @@ function App() {
   };
   let liveClassHandler = () => {
     setLiveClass(true);
+      setMiddleLayout(false)
     setFreeTestHost(false);
     setAddPaidQuestion(false);
      setAddLectureDetails(false);
@@ -553,6 +565,7 @@ function App() {
   };
   let RecordedClassHandler = () => {
     setRecordedClass(true);
+      setMiddleLayout(false)
     setAddMockTest(false);
     setAddPaidQuestion(false);
      setAddLectureDetails(false);
@@ -578,6 +591,7 @@ function App() {
   };
   let customerCareHandler = () => {
     setCustomerCare(true);
+      setMiddleLayout(false)
     setAddQuotes(false);
      setAddLectureDetails(false);
     setAddPaidQuestion(false);
@@ -604,6 +618,7 @@ function App() {
   let paidTestHandler = () => {
     setPaidTest(true);
     setAddPaidTest(false);
+      setMiddleLayout(false)
     setAddPaidQuestion(false);
      setAddLectureDetails(false);
     setAddPaidTestDetails(false);
@@ -628,6 +643,7 @@ function App() {
   let addPaidTestHandler = () => {
     setAddPaidTest(true);
     setPaidTest(false);
+      setMiddleLayout(false)
     setAddPaidQuestion(false);
     setAddPaidTestDetails(false);
     setAddMockDetails(false);
@@ -654,6 +670,7 @@ function App() {
     setAddPaidTestDetails(true);
     setAddPaidTest(false);
      setAddLectureDetails(false);
+       setMiddleLayout(false)
     setAddPaidTest(false);
     setAddPaidQuestion(false);
     setPaidTest(false);
@@ -680,6 +697,7 @@ function App() {
     setFreeTest(true);
      setAddLectureDetails(false);
     setAddMockDetails(false);
+      setMiddleLayout(false)
     setAddLecture(false);
     setAddPaidQuestion(false);
     setAddPaidTest(false);
@@ -705,6 +723,7 @@ function App() {
     setFreeTestHost(true);
      setAddLectureDetails(false);
     setAddLecture(false);
+      setMiddleLayout(false)
     setFreeTest(false);
     setAddPaidQuestion(false);
     setAddPaidTest(false);
@@ -730,6 +749,7 @@ function App() {
     setAddQuotes(true);
      setAddLectureDetails(false);
     setFreeTest(false);
+      setMiddleLayout(false)
     setAddPaidTest(false);
     setAddPaidQuestion(false);
     setAddPaidTestDetails(false);
@@ -755,6 +775,7 @@ function App() {
     setAddRoadMaps(true);
      setAddLectureDetails(false);
     setAddPaidTest(false);
+      setMiddleLayout(false)
     setAddPaidQuestion(false);
     setAddPaidTestDetails(false);
     setAddQuotes(false);

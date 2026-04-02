@@ -45,7 +45,7 @@ function SideBar({
 
   return (
     <div
-      className={`min-h-screen w-[275px] p-5 flex flex-col
+      className={`min-h-screen w-[280px] p-5 flex flex-col
       bg-gradient-to-b from-gray-900 via-gray-800 to-gray-950
       border-r border-gray-700 shadow-2xl mr-0`}
     >

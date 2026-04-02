@@ -156,7 +156,6 @@ function SignUp({ signUpClicked, signUpErrors }) {
                   ref={gender}
                   name="gender"
                   value="male"
-                  defaultChecked
                 />
                 Male
               </label>
@@ -180,7 +179,6 @@ function SignUp({ signUpClicked, signUpErrors }) {
                   ref={role}
                   name="role"
                   value="user"
-                  defaultChecked
                 />
                 User
               </label>
