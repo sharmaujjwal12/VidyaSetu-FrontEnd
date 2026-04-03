@@ -9,7 +9,7 @@ function Footer() {
           {/* Brand Section */}
           <div className="flex flex-col justify-start h-auto">
             <h3 className="text-xl sm:text-2xl font-bold text-white mb-2 sm:mb-3">
-              PrepSetu
+              VidyaSetu
             </h3>
             <p className="text-xs sm:text-sm text-gray-400">
               Elevate your learning experience.
@@ -72,7 +72,7 @@ function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-6">
           <p className="text-xs sm:text-sm text-gray-500 text-center sm:text-left">
-            © 2025 PrepSetu. All rights reserved.
+            © 2025 VidyaSetu. All rights reserved.
           </p>
           <div className="flex gap-4 sm:gap-6">
             <span className="text-xs sm:text-sm text-gray-500 hover:text-gray-300 transition-colors cursor-pointer">
