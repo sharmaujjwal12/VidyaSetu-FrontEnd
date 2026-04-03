@@ -52,15 +52,16 @@ function SideBar({
 
   return (
     <>
-     <button
+    <button
   className="
-  lg:hidden sticky top-4 left-4 z-[60]
-  bg-gray-900 text-white 
+  lg:hidden
+  fixed top-3 left-3
+  z-[9999]
+  bg-gray-900/95 backdrop-blur-sm
+  text-white 
   p-2 rounded-lg shadow-lg
   transition-all duration-300
   hover:bg-gray-800
-  hover:scale-110
-  hover:shadow-xl
 "
   onClick={() => setOpen(!open)}
 >
