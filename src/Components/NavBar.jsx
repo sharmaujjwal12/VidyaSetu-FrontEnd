@@ -296,7 +296,7 @@ function NavBar({
 
       {/* Bottom Section */}
       <div className="border-t border-gray-700 bg-gray-950">
-        <div className="max-w-7xl mx-auto px-4 py-4 flex flex-col lg:flex-row items-center justify-between gap-4">
+        <div className="w-full px-4 py-4 flex flex-col lg:flex-row items-center justify-between gap-4">
           {/* Search */}
           <form className="w-full lg:w-1/3" role="search">
             <input
