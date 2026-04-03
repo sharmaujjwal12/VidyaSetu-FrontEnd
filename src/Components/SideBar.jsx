@@ -18,7 +18,6 @@ function SideBar({
   freeTestHostHandler,
   role,
 }) {
-
   const [open, setOpen] = useState(false);
 
   // 🔥 Reusable Nav Item
@@ -59,9 +58,10 @@ function SideBar({
 
       <div
         className={`
-        fixed lg:static
-        top-0 left-0
-        h-screen
+        fixed lg:relative
+top-0 left-0
+h-screen lg:h-auto
+flex-shrink-0
         ${open ? "w-64" : "w-0"}
         lg:w-[260px] xl:w-[280px]
         p-5 flex flex-col
