@@ -4,6 +4,7 @@ import { getPaidMockData } from "../services/Backend";
 import Loader from "./Loader";
 import PaidMockLists from "./PaidMockLists";
 import PaymentPage from "./Payment";
+import DynamicLoader from "./DynamicLoader.jsx";
 
 function PaidTests() {
   let [selectedMock, setSelectedMock] = useState(false);
@@ -23,7 +24,7 @@ function PaidTests() {
         📊 Paid Mock Tests
       </h1>
       <div className="flex flex-col justify-center items-center">
-        {loader === false && <Loader />}
+        {loader === false && <DynamicLoader/>}
       </div>
       {showPayment ? (
         <PaymentPage

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getNewsFromServer } from "../services/Backend";
 import LatestNew from "./LatestNew";
 import Loader from "./Loader";
+import DynamicLoader from "./DynamicLoader";
 function LatestNews() {
   let [latestNews, setLatestNews] = useState([]);
   let [loader,setLoader]= useState(false);
@@ -20,7 +21,7 @@ function LatestNews() {
         📰 Today's Breaking News
       </h1>
     <div>
-      {loader===false && <Loader/>}
+      {loader===false && <DynamicLoader/>}
     </div>
       <div className="flex flex-col">
       {latestNews.map(news =><LatestNew key={news._id} news={news} />

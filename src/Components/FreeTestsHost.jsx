@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getMockData } from "../services/Backend";
 import FreeTestHost from "./FreeTestHost";
 import Loader from "./Loader";
+import DynamicLoader from "./DynamicLoader";
 
 function FreeTestsHost({ InnerMockClicked, addMock }) {
   let [mockData, setMockData] = useState([]);
@@ -15,7 +16,7 @@ function FreeTestsHost({ InnerMockClicked, addMock }) {
   }, []);
   return (
     <div class="flex flex-wrap">
-      <div>{loader === false && <Loader />}</div>
+      <div>{loader === false && <DynamicLoader />}</div>
       {mockData.map((item) => (
         <FreeTestHost
           key={item._id}

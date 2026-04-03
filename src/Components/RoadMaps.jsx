@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import RoadMap from "./RoadMap";
 import { getRoadMapFromServer, getRoadMapWithoutCondition } from "../services/Backend";
 import Loader from "./Loader";
+import DynamicLoader from "./DynamicLoader";
 
 function RoadMaps(){
   let [data,setData]  = useState([]);
@@ -21,7 +22,7 @@ function RoadMaps(){
         RoadMaps Shown Here
       </h1>
         <div>
-      {loader===false && <Loader/>}
+      {loader===false && <DynamicLoader/>}
     </div>
       <div className="flex flex-wrap">
       {data.map(item=><RoadMap item={item.roadmapType}/>)}

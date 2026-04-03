@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import Loader from "./Loader";
 import { useState } from "react";
+import DynamicLoader from "./DynamicLoader";
 
 function SignUp({ signUpClicked, signUpErrors }) {
   let firstName = useRef();
@@ -43,7 +44,7 @@ function SignUp({ signUpClicked, signUpErrors }) {
           Join us and start your journey 🚀
         </p>
         {/**Loader */}
-        <div className="mb-5">{loader === true && <Loader />}</div>
+        <div className="mb-5">{loader === true && <DynamicLoader />}</div>
         {/* Errors */}
         {signUpErrors?.length > 0 && (
           <div className="mb-6 rounded-xl border border-red-200 p-4">

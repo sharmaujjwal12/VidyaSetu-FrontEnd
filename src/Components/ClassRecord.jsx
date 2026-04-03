@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { getMockData } from "../services/Backend";
 import Loader from "./Loader";
 import Chapters from "./Chapters";
+import DynamicLoader from "./DynamicLoader";
 
 function ClassRecord() {
   const [totalCourses, setTotalCourses] = useState([]);
@@ -19,7 +20,7 @@ function ClassRecord() {
   return (
     <div className="">
        <div>
-      {loader===false && <Loader
+      {loader===false && <DynamicLoader
       />}
     </div>
     {chapters === true ? (

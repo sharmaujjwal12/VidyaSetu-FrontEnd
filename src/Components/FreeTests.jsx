@@ -3,6 +3,7 @@ import { getMockData } from "../services/Backend";
 import FreeTest from "./FreeTest";
 import MockLists from "./MockLists";
 import Loader from "./Loader";
+import DynamicLoader from "./DynamicLoader";
 
 function FreeTests({}) {
   let [selectedMock, setSelectedMock] = useState(false);
@@ -23,7 +24,7 @@ function FreeTests({}) {
         📊 Free Mock Tests
       </h1>
        <div>
-      {loader===false && <Loader/>}
+      {loader===false && <DynamicLoader/>}
     </div>
       {selectedMock ? (<MockLists mockName={selectedMock} setSelectedMock={setSelectedMock}/>) : (<div className="flex flex-wrap">{mockData.map((item) => (
         <FreeTest

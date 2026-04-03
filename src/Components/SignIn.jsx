@@ -1,11 +1,12 @@
 import { useRef } from "react";
 import Loader from "./Loader";
 import { useState } from "react";
+import DynamicLoader from "./DynamicLoader";
 
 function SignIn({ LoginClicked, loginErrors }) {
   let email = useRef();
   let password = useRef();
-  let [loader,setLoader] = useState(false);
+  let [loader, setLoader] = useState(false);
   const onLoggedInClicked = (action) => {
     action.preventDefault();
     LoginClicked(email.current.value, password.current.value);
@@ -13,15 +14,14 @@ function SignIn({ LoginClicked, loginErrors }) {
 
   return (
     <div className="flex items-center justify-center px-4 py-8">
-      
       {/* Card */}
-      <div className="w-full max-w-sm sm:max-w-md md:max-w-lg 
+      <div
+        className="w-full max-w-sm sm:max-w-md md:max-w-lg 
       border border-gray-200 rounded-2xl shadow-lg 
-      p-6 sm:p-8 bg-white">
-
+      p-6 sm:p-8 bg-white"
+      >
         {/* Logo */}
-        <div className="flex justify-center mb-6">
-        </div>
+        <div className="flex justify-center mb-6"></div>
 
         {/* Heading */}
         <h1 className="text-xl sm:text-2xl font-bold text-gray-800 text-center mb-2">
@@ -32,8 +32,8 @@ function SignIn({ LoginClicked, loginErrors }) {
           Welcome back! Login to continue 🚀
         </p>
 
-         {/**Loader */}
-        <div className="mb-5">{loader === true && <Loader/>}</div>
+        {/**Loader */}
+        <div className="mb-5">{loader === true && <DynamicLoader />}</div>
 
         {/* Errors */}
         {loginErrors?.length > 0 && (
@@ -57,7 +57,6 @@ function SignIn({ LoginClicked, loginErrors }) {
 
         {/* Form */}
         <form>
-
           {/* Email */}
           <div className="mb-4">
             <label className="block text-sm font-medium text-gray-600 mb-1">
@@ -92,21 +91,16 @@ function SignIn({ LoginClicked, loginErrors }) {
 
           {/* Remember me */}
           <div className="flex items-center mb-6">
-            <input
-              type="checkbox"
-              className="h-4 w-4 text-blue-500"
-            />
+            <input type="checkbox" className="h-4 w-4 text-blue-500" />
 
-            <label className="ml-2 text-sm text-gray-600">
-              Remember me
-            </label>
+            <label className="ml-2 text-sm text-gray-600">Remember me</label>
           </div>
 
           {/* Button */}
           <button
             type="submit"
             onClick={(action) => {
-              onLoggedInClicked(action)
+              onLoggedInClicked(action);
               setLoader(true);
             }}
             className="w-full rounded-xl bg-blue-500 
@@ -121,10 +115,8 @@ function SignIn({ LoginClicked, loginErrors }) {
           <p className="mt-6 text-center text-xs text-gray-400">
             © 2025 VidyaSetu. All rights reserved.
           </p>
-
         </form>
       </div>
-
     </div>
   );
 }

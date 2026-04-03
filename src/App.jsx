@@ -38,6 +38,7 @@ import AddMockDetailsPaid from "./Components/AddMockDetailsPaid";
 import AddPaidQuestions from "./Components/AddPaidQuestion";
 import AddLectureDetails from "./Components/AddLectureDetails";
 import MiddleLayoutAtLogin from "./Components/MiddleLayoutAtLogin";
+import DynamicLoader from "./Components/DynamicLoader";
 
 function App() {
   let [middleLayout, setMiddleLayout] = useState(true);
@@ -49,14 +50,14 @@ function App() {
   let [addRoadMaps, setAddRoadMaps] = useState(false);
   let [addMockTest, setAddMockTest] = useState(false);
   let [isLoggedIn, setisLoggedIn] = useState(false);
-  let [role, setRole] = useState('');
+  let [role, setRole] = useState("");
   let [signUpButton, setSignButton] = useState(false);
   let [useremail, setUserEmail] = useState("");
   let [quotes, setQuotes] = useState([]);
   useEffect(() => {
     const loginStatus = localStorage.getItem("isLoggedIn");
     const role = localStorage.getItem("role");
-    if(role){
+    if (role) {
       setRole(role);
     }
     if (loginStatus === "true") {
@@ -93,6 +94,7 @@ function App() {
   let [addMockDetails, setAddMockDetails] = useState(false);
   let [addPaidQuestion, setAddPaidQuestion] = useState(false);
   let [addLecture, setAddLecture] = useState(false);
+  let [logout, setlogout] = useState(false);
 
   const InnerMocks = () => {
     setInnerMock(true);
@@ -128,9 +130,9 @@ function App() {
   const errorWhileSignedUp = (errors, oldInputs) => {
     setSignUpErrors(errors);
   };
-  const onSuccessLogin = (dataFromBackend, email,role) => {
+  const onSuccessLogin = (dataFromBackend, email, role) => {
     setisLoggedIn(dataFromBackend);
-    console.log("Role Bhaii : ",role);
+    console.log("Role Bhaii : ", role);
     localStorage.setItem("isLoggedIn", "true");
     localStorage.setItem("role", role);
     setUserEmail(email);
@@ -150,12 +152,18 @@ function App() {
     let logout = isLoggedInMessage.message;
     localStorage.removeItem("isLoggedIn");
     setisLoggedIn(logout);
+    setisLoggedIn(false);
+    setMiddleLayout(true);
+    setTimeout(() => {
+      setlogout(false);
+    }, 800);
   };
   const logoutClicked = () => {
     const email = localStorage.getItem("email");
     console.log("User Emails : ", email);
     logoutFromServer(onLogout, email);
-     setMiddleLayout(true);
+    setMiddleLayout(true);
+    setlogout(true);
   };
 
   const signUpClicked = (
@@ -178,20 +186,20 @@ function App() {
       onSuccessSigned,
       errorWhileSignedUp,
     );
-     setMiddleLayout(false);
+    setMiddleLayout(false);
   };
   const LoginClicked = (email, password) => {
     loginToServer(email, password, onSuccessLogin, errorWhileLogin);
     console.log("Value At Login : ", email, password);
-     setMiddleLayout(false);
+    setMiddleLayout(false);
   };
-
 
   let login = () => {
     setLoginButton(true);
+    setlogout(false);
     setMiddleLayout(false);
     setAddMockDetails(false);
-     setAddLectureDetails(false);
+    setAddLectureDetails(false);
     setAddPaidTest(false);
     setAddPaidTestDetails(false);
     setAddMockTest(false);
@@ -216,8 +224,9 @@ function App() {
   };
   let lectureHandler = () => {
     setAddLecture(true);
-     setAddLectureDetails(false);
-     setMiddleLayout(false)
+    setAddLectureDetails(false);
+    setMiddleLayout(false);
+    setlogout(false);
     setLoginButton(false);
     setAddPaidQuestion(false);
     setAddMockDetails(false);
@@ -244,7 +253,8 @@ function App() {
   let mockDetailsHandler = () => {
     setAddMockDetails(true);
     setLoginButton(false);
-      setMiddleLayout(false)
+    setlogout(false);
+    setMiddleLayout(false);
     setAddPaidQuestion(false);
     setAddPaidTest(false);
     setAddPaidTestDetails(false);
@@ -256,7 +266,7 @@ function App() {
     setAddQuotes(false);
     setCustomerCare(false);
     setFreeTest(false);
-     setAddLectureDetails(false);
+    setAddLectureDetails(false);
     setPaidTest(false);
     setRecordedClass(false);
     setLiveClass(false);
@@ -270,7 +280,8 @@ function App() {
   };
   let addLectureDetailsHandler = () => {
     setAddLectureDetails(true);
-      setMiddleLayout(false)
+    setMiddleLayout(false);
+    setlogout(false);
     setAddMockDetails(false);
     setLoginButton(false);
     setAddPaidQuestion(false);
@@ -298,8 +309,9 @@ function App() {
   let signup = () => {
     setSignButton(true);
     setEnterQuestion(false);
-     setAddLectureDetails(false);
-     setMiddleLayout(false);
+    setAddLectureDetails(false);
+    setlogout(false);
+    setMiddleLayout(false);
     setAddPaidQuestion(false);
     setAddPaidTest(false);
     setAddPaidTestDetails(false);
@@ -324,10 +336,11 @@ function App() {
   };
   let addQuestionHandler = () => {
     setEnterQuestion(true);
-      setMiddleLayout(false)
-     setAddLectureDetails(false);
+    setMiddleLayout(false);
+    setAddLectureDetails(false);
     setHomePage(false);
     setAddRoadMaps(false);
+    setlogout(false);
     setAddLecture(false);
     setAddPaidTest(false);
     setAddPaidTestDetails(false);
@@ -351,9 +364,10 @@ function App() {
   };
   let addPaidQuestionHandler = () => {
     setAddPaidQuestion(true);
-      setMiddleLayout(false)
-     setAddLectureDetails(false);
+    setMiddleLayout(false);
+    setAddLectureDetails(false);
     setEnterQuestion(false);
+    setlogout(false);
     setHomePage(false);
     setAddRoadMaps(false);
     setAddLecture(false);
@@ -378,8 +392,9 @@ function App() {
   };
   let homePageHandler = () => {
     setHomePage(true);
-      setMiddleLayout(false)
-     setAddLectureDetails(false);
+    setMiddleLayout(false);
+    setAddLectureDetails(false);
+    setlogout(false);
     setAddQuotes(false);
     setAddPaidTest(false);
     setAddPaidTestDetails(false);
@@ -406,8 +421,9 @@ function App() {
   };
   let latestNewsHandler = () => {
     setLatestNews(true);
-      setMiddleLayout(false)
-     setAddLectureDetails(false);
+    setMiddleLayout(false);
+    setlogout(false);
+    setAddLectureDetails(false);
     setCustomerCare(false);
     setAddPaidQuestion(false);
     setAddPaidTest(false);
@@ -431,9 +447,10 @@ function App() {
   };
   let roadMapHandler = () => {
     setRoadMap(true);
-      setMiddleLayout(false)
+    setMiddleLayout(false);
     setAddMockTest(false);
-     setAddLectureDetails(false);
+    setAddLectureDetails(false);
+    setlogout(false);
     setAddPaidQuestion(false);
     setAddRoadMaps(false);
     setAddPaidTest(false);
@@ -458,9 +475,10 @@ function App() {
   };
   let addMockHandler = () => {
     setAddMockTest(true);
-      setMiddleLayout(false)
+    setMiddleLayout(false);
     setRoadMap(false);
-     setAddLectureDetails(false);
+    setlogout(false);
+    setAddLectureDetails(false);
     setAddPaidQuestion(false);
     setAddLecture(false);
     setAddRoadMaps(false);
@@ -485,9 +503,10 @@ function App() {
   };
   let ourProductsHandler = () => {
     setOurProducts(true);
-      setMiddleLayout(false)
+    setlogout(false);
+    setMiddleLayout(false);
     setAddPaidQuestion(false);
-     setAddLectureDetails(false);
+    setAddLectureDetails(false);
     setAddMockDetails(false);
     setAddPaidTest(false);
     setAddPaidTestDetails(false);
@@ -512,9 +531,10 @@ function App() {
   };
   let motivationHandler = () => {
     setMotivation(true);
-      setMiddleLayout(false)
+    setlogout(false);
+    setMiddleLayout(false);
     setAddPaidQuestion(false);
-     setAddLectureDetails(false);
+    setAddLectureDetails(false);
     setAddMockTest(false);
     setAddPaidTest(false);
     setAddPaidTestDetails(false);
@@ -539,10 +559,11 @@ function App() {
   };
   let liveClassHandler = () => {
     setLiveClass(true);
-      setMiddleLayout(false)
+    setlogout(false);
+    setMiddleLayout(false);
     setFreeTestHost(false);
     setAddPaidQuestion(false);
-     setAddLectureDetails(false);
+    setAddLectureDetails(false);
     setAddPaidTest(false);
     setAddPaidTestDetails(false);
     setAddLecture(false);
@@ -565,10 +586,11 @@ function App() {
   };
   let RecordedClassHandler = () => {
     setRecordedClass(true);
-      setMiddleLayout(false)
+    setMiddleLayout(false);
+    setlogout(false);
     setAddMockTest(false);
     setAddPaidQuestion(false);
-     setAddLectureDetails(false);
+    setAddLectureDetails(false);
     setAddPaidTest(false);
     setAddPaidTestDetails(false);
     setAddRoadMaps(false);
@@ -591,9 +613,10 @@ function App() {
   };
   let customerCareHandler = () => {
     setCustomerCare(true);
-      setMiddleLayout(false)
+    setMiddleLayout(false);
+    setlogout(false);
     setAddQuotes(false);
-     setAddLectureDetails(false);
+    setAddLectureDetails(false);
     setAddPaidQuestion(false);
     setAddPaidTest(false);
     setAddPaidTestDetails(false);
@@ -618,9 +641,10 @@ function App() {
   let paidTestHandler = () => {
     setPaidTest(true);
     setAddPaidTest(false);
-      setMiddleLayout(false)
+    setlogout(false);
+    setMiddleLayout(false);
     setAddPaidQuestion(false);
-     setAddLectureDetails(false);
+    setAddLectureDetails(false);
     setAddPaidTestDetails(false);
     setAddMockDetails(false);
     setAddLecture(false);
@@ -643,17 +667,18 @@ function App() {
   let addPaidTestHandler = () => {
     setAddPaidTest(true);
     setPaidTest(false);
-      setMiddleLayout(false)
+    setlogout(false);
+    setMiddleLayout(false);
     setAddPaidQuestion(false);
     setAddPaidTestDetails(false);
     setAddMockDetails(false);
-     setAddMockTest(false);
+    setAddMockTest(false);
     setAddLecture(false);
     setAddRoadMaps(false);
     setAddQuotes(false);
     setLiveClass(false);
     setFreeTestHost(false);
-     setAddLectureDetails(false);
+    setAddLectureDetails(false);
     setEnterQuestion(false);
     setMotivation(false);
     setCustomerCare(false);
@@ -669,12 +694,13 @@ function App() {
   let addPaidTestDetailsHandler = () => {
     setAddPaidTestDetails(true);
     setAddPaidTest(false);
-     setAddLectureDetails(false);
-       setMiddleLayout(false)
+    setAddLectureDetails(false);
+    setlogout(false);
+    setMiddleLayout(false);
     setAddPaidTest(false);
     setAddPaidQuestion(false);
     setPaidTest(false);
-     setAddMockTest(false);
+    setAddMockTest(false);
     setAddMockDetails(false);
     setAddLecture(false);
     setAddRoadMaps(false);
@@ -695,9 +721,10 @@ function App() {
   };
   let freeTestHandler = () => {
     setFreeTest(true);
-     setAddLectureDetails(false);
+    setAddLectureDetails(false);
     setAddMockDetails(false);
-      setMiddleLayout(false)
+    setMiddleLayout(false);
+    setlogout(false);
     setAddLecture(false);
     setAddPaidQuestion(false);
     setAddPaidTest(false);
@@ -721,9 +748,10 @@ function App() {
   };
   let freeTestHostHandler = () => {
     setFreeTestHost(true);
-     setAddLectureDetails(false);
+    setAddLectureDetails(false);
     setAddLecture(false);
-      setMiddleLayout(false)
+    setlogout(false);
+    setMiddleLayout(false);
     setFreeTest(false);
     setAddPaidQuestion(false);
     setAddPaidTest(false);
@@ -747,10 +775,11 @@ function App() {
   };
   let addQuotesHandler = () => {
     setAddQuotes(true);
-     setAddLectureDetails(false);
+    setAddLectureDetails(false);
     setFreeTest(false);
-      setMiddleLayout(false)
+    setMiddleLayout(false);
     setAddPaidTest(false);
+    setlogout(false);
     setAddPaidQuestion(false);
     setAddPaidTestDetails(false);
     setAddLecture(false);
@@ -773,9 +802,10 @@ function App() {
   };
   let addRoadMapHandler = () => {
     setAddRoadMaps(true);
-     setAddLectureDetails(false);
+    setAddLectureDetails(false);
     setAddPaidTest(false);
-      setMiddleLayout(false)
+    setMiddleLayout(false);
+    setlogout(false);
     setAddPaidQuestion(false);
     setAddPaidTestDetails(false);
     setAddQuotes(false);
@@ -813,7 +843,7 @@ function App() {
     console.log(id, name, noOfMock, editing);
   };
   let addPaidMock = (id, name, noOfMock, editing) => {
-    console.log("addPaidMock Clicked",editing)
+    console.log("addPaidMock Clicked", editing);
     if (editing === true) {
       setAddPaidEditMock({
         type: "editing",
@@ -850,7 +880,7 @@ function App() {
               role={role}
             />
           )}
-        <div className="flex flex-col flex-1 min-w-0">
+          <div className="flex flex-col flex-1 min-w-0">
             <NavBar
               login={login}
               signup={signup}
@@ -882,7 +912,7 @@ function App() {
               addRoadMaps={addRoadMaps}
               addRoadMapHandler={addRoadMapHandler}
               addPaidTest={addPaidTest}
-              addPaidMock ={addPaidMock}
+              addPaidMock={addPaidMock}
               addPaidTestDetails={addPaidTestDetails}
               addPaidTestDetailsHandler={addPaidTestDetailsHandler}
               addPaidQuestion={addPaidQuestion}
@@ -895,7 +925,10 @@ function App() {
 
               {/**isLoggedIn Started */}
 
-              {middleLayout===true && <MiddleLayoutAtLogin login={login} signup={signup}/>}
+              {middleLayout === true && (
+                <MiddleLayoutAtLogin login={login} signup={signup} />
+              )}
+              {logout === true && <DynamicLoader />}
               {isLoggedIn === true && (
                 <div className="studyItems">
                   {ourProducts === true && <OurProducts />}
@@ -918,10 +951,12 @@ function App() {
                   {recordedClass === true && <ClassRecord />}
                   {addLecture === true && <AddLecture />}
                   {customerCare === true && <Customer />}
-                  {addPaidTest===true && <AddMockPaid addPaidEditMock={addPaidEditMock}/>}
-                  {addPaidTestDetails===true && <AddMockDetailsPaid/>}
-                  {addPaidQuestion===true && <AddPaidQuestions/>}
-                  {addLectureDetails===true && <AddLectureDetails/>}
+                  {addPaidTest === true && (
+                    <AddMockPaid addPaidEditMock={addPaidEditMock} />
+                  )}
+                  {addPaidTestDetails === true && <AddMockDetailsPaid />}
+                  {addPaidQuestion === true && <AddPaidQuestions />}
+                  {addLectureDetails === true && <AddLectureDetails />}
                   {homePage === true && (
                     <StudyItems
                       latestNewsHandler={latestNewsHandler}
