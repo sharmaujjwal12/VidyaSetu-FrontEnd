@@ -52,10 +52,9 @@ function SideBar({
 
   return (
     <>
-      {/* Mobile Toggle Button */}
-      <button
+     <button
   className="
-  lg:hidden fixed top-4 left-4 z-[60]
+  lg:hidden sticky top-4 left-4 z-[60]
   bg-gray-900 text-white 
   p-2 rounded-lg shadow-lg
   transition-all duration-300
