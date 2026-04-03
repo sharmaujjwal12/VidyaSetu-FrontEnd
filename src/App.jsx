@@ -850,7 +850,7 @@ function App() {
               role={role}
             />
           )}
-          <div className="navFooter">
+          <div className="flex-1">
             <NavBar
               login={login}
               signup={signup}
