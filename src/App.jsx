@@ -831,7 +831,6 @@ function App() {
     <>
       <PrepSetuContextProvider>
         <div className="flex">
-        <div className="sideBarNavFooter">
           {isLoggedIn === true && (
             <SideBar
               homePage={homePage}
@@ -954,7 +953,6 @@ function App() {
               </div>
               <Footer />
             </div>
-          </div>
           </div>
         </div>
       </PrepSetuContextProvider>
