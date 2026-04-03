@@ -27,7 +27,7 @@ function SignUp({ signUpClicked, signUpErrors }) {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 py-8">
+    <div className="flex items-center justify-center px-4 py-8">
       {/* Card */}
       <div
         className="w-full max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl 
