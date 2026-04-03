@@ -60,10 +60,10 @@ function NavBar({
 
   return (
     <header
-      className={`${isLoggedIn === false && "w-380"} bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 shadow-lg`}
+      className={`${isLoggedIn === false && 'w-screen'} bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 shadow-lg`}
     >
       {/* Top Navbar */}
-      <div className="w-full mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap items-center justify-between">
+      <div className="w-100vw mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap items-center justify-between">
         {/* Logo */}
         <a
           href="/"

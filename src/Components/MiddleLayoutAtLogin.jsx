@@ -1,6 +1,6 @@
 function MiddleLayoutAtLogin({login, signup}) {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className=" flex flex-col flex-wrap ">
       {/* Main Content Area - grows to fill space between navbar and footer */}
       <div className="flex-grow flex items-center justify-center px-4 py-8 md:py-12 lg:py-16">
         <div className="w-full max-w-4xl">
@@ -9,7 +9,7 @@ function MiddleLayoutAtLogin({login, signup}) {
             {/* Left Content */}
             <div className="flex flex-col justify-center space-y-4 md:space-y-6">
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
-                Welcome to <span className="text-blue-600">PrepSetu</span>
+                Welcome to <span className="text-blue-600">VidyaSetu</span>
               </h1>
 
               <p className="text-base md:text-lg text-gray-600">
