@@ -830,7 +830,7 @@ function App() {
   return (
     <>
       <PrepSetuContextProvider>
-        <div className="sideBarNavFooter">
+        <div className="flex">
           {isLoggedIn === true && (
             <SideBar
               homePage={homePage}
