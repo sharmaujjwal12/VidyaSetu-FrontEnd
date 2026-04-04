@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getMockListFromServer } from "../services/Backend";
 
-function AttemptMock({ examName }) {
+function AttemptMock({ examName,setLoader}) {
   let [questions, setQuestions] = useState([]);
   useEffect(() => {
     const mockQuestions = (data) => {
@@ -9,6 +9,7 @@ function AttemptMock({ examName }) {
       console.log("Data2 : ",data[0]);
       console.log("Data2 : ",data[0].question);
       setQuestions(data);
+      setLoader(false)
     };
     getMockListFromServer(examName, mockQuestions);
   }, []);

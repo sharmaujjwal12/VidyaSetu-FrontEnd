@@ -930,7 +930,7 @@ function App() {
               )}
               {logout === true && <DynamicLoader />}
               {isLoggedIn === true && (
-                <div className="studyItems">
+                <div className="studyItems ml-0 lg:ml-64 p-4 transition-all duration-300">
                   {ourProducts === true && <OurProducts />}
                   {addQuotes === true && <AddQuotes />}
                   {enterQuestion === true && <AddQuestions />}

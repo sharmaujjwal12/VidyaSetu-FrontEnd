@@ -1,30 +1,89 @@
-function Motivation({ item }) {
+function Motivation({ items }) {
+  console.log("Quotes Bhai : ", items);
+
   return (
-    <div className="relative bg-white/80 backdrop-blur-md border border-gray-200 
-    rounded-2xl p-6 shadow-lg hover:shadow-2xl transition duration-300 
-    hover:-translate-y-2">
+    <article
+      className="
+      group
+      relative 
+      bg-white 
+      border border-gray-200 
+      rounded-3xl 
+      p-6 
+      shadow-sm 
+      hover:shadow-2xl 
+      transition-all 
+      duration-300 
+      hover:-translate-y-2
+      overflow-hidden
+      "
+    >
+      {/* Gradient Background Hover */}
+      <div className="
+      absolute 
+      inset-0 
+      bg-gradient-to-br 
+      from-blue-50 
+      to-indigo-50 
+      opacity-0 
+      group-hover:opacity-100 
+      transition 
+      duration-300
+      "></div>
 
       {/* Quote Icon */}
-      <div className="text-5xl text-blue-400 absolute -top-4 left-4">
-        “
+      <div className="
+      absolute 
+      -top-3 
+      left-5 
+      text-5xl 
+      text-blue-500 
+      opacity-20 
+      group-hover:opacity-40
+      transition
+      ">
+        "
       </div>
 
-      {/* Quote Text */}
-      <p className="text-gray-700 text-lg leading-relaxed italic mt-4">
-        {item.quote}
-      </p>
-
-      {/* Divider */}
-      <div className="w-16 h-1 bg-blue-500 rounded-full mt-4"></div>
-
-      {/* Author */}
-      <div className="mt-4 flex justify-end">
-        <p className="text-gray-900 font-semibold text-md">
-          — {item.author}
+      {/* Content */}
+      <div className="relative z-10">
+        
+        <p className="
+        text-gray-700 
+        text-base 
+        sm:text-lg 
+        leading-relaxed 
+        italic 
+        mt-4
+        ">
+          {items.quote}
         </p>
-      </div>
 
-    </div>
+        {/* Divider */}
+        <div className="
+        w-16 
+        h-[3px] 
+        bg-gradient-to-r 
+        from-blue-500 
+        to-indigo-500 
+        rounded-full 
+        mt-6
+        "></div>
+
+        {/* Author */}
+        <div className="mt-4 flex justify-end">
+          <p className="
+          text-gray-900 
+          font-semibold 
+          text-sm 
+          sm:text-base
+          ">
+            — {items.author}
+          </p>
+        </div>
+
+      </div>
+    </article>
   );
 }
 

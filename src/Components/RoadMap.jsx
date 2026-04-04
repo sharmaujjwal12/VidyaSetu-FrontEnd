@@ -1,58 +1,111 @@
-import { useEffect, useState } from "react";
-import logo from "./images/VidyaSetuBanner.jpg";
+import { useState } from "react";
 import { getRoadMapFromServer } from "../services/Backend";
 
 function RoadMap({ item }) {
   const [loading, setLoading] = useState(false);
- const onViewDetailClicked = (action, roadMapType) => {
-  action.preventDefault();
+  const [roadMaps, setRoadMaps] = useState([]);
 
-  getRoadMapFromServer(roadMapType).then((data) => {
-    if (!data || data.length === 0 || !data[0]?.roadMapPdf) {
-      alert("No roadmap found!");
+  const openRoadmap = (fileUrl) => {
+    if (!fileUrl) {
+      alert("No roadmap file available.");
       return;
     }
 
-    let fileUrl = data[0].roadMapPdf;
-
-    // If your backend returns relative path, convert to absolute
-    if (!fileUrl.startsWith("http")) {
-      fileUrl = `${window.location.origin}/${fileUrl.replace(/^\/+/, "")}`;
+    let fullUrl = fileUrl;
+    if (!fullUrl.startsWith("http")) {
+      fullUrl = `${window.location.origin}/${fullUrl.replace(/^\/+/, "")}`;
     }
 
-    // Direct download / open
     const link = document.createElement("a");
-    link.href = fileUrl;
-    link.target = "_blank"; // open in new tab
-    link.download = fileUrl.split("/").pop().split("?")[0];
+    link.href = fullUrl;
+    link.target = "_blank";
+    link.download = fullUrl.split("/").pop().split("?")[0];
     document.body.appendChild(link);
     link.click();
     link.remove();
-  }).catch((err) => {
-    console.error("Error opening PDF:", err);
-    alert("Something went wrong while opening the PDF.");
-  });
-};
-  return (
-    <div className="p-6 bg-gray-100">
-      {/* Roadmaps Container */}
-      <div className="">
-        {/* Card */}
-        <div className="bg-white rounded-2xl shadow-md hover:shadow-xl transition duration-300 border border-gray-200 overflow-hidden">
-          {/* Image */}
-          <img src={logo} className="w-full h-40 object-cover" alt="RoadMaps" />
+  };
 
-          {/* Content */}
-          <div className="p-4">
-            <h2 className="text-lg font-semibold text-gray-800">
+  const onViewDetailClicked = async (event, roadMapType) => {
+    event.preventDefault();
+    setLoading(true);
+
+    try {
+      const data = await getRoadMapFromServer(roadMapType);
+
+      if (!data || data.length === 0) {
+        alert("No roadmap found!");
+        return;
+      }
+
+      const validRoadMaps = data.filter((entry) => entry?.roadMapPdf);
+      if (validRoadMaps.length === 0) {
+        alert("No roadmap found!");
+        return;
+      }
+
+      setRoadMaps(validRoadMaps);
+    } catch (err) {
+      console.error("Error fetching roadmaps:", err);
+      alert("Something went wrong while loading the roadmaps.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="p-4 min-h-[calc(100vh-2rem)]">
+      <div className="max-w-3xl mx-auto">
+        <div className="rounded-[28px] border border-slate-200 bg-white shadow-xl overflow-hidden">
+          <div className="p-6 sm:p-7">
+            <span className="inline-flex rounded-full bg-gradient-to-r from-sky-100 to-blue-100 text-sky-800 px-3 py-1 text-xs font-semibold mb-3">
               {item} RoadMap
+            </span>
+            <h2 className="text-2xl font-semibold tracking-tight text-slate-900 mb-3">
+              Download Your {item} Learning Path
             </h2>
+            <p className="text-sm text-slate-600 leading-6 mb-5">
+              A compact modular roadmap card for fast access. Load available roadmaps and open them instantly.
+            </p>
+
+            {roadMaps.length > 0 && (
+              <div className="space-y-4 mb-6">
+                {roadMaps.map((roadMap, index) => {
+                  const pdfUrl = roadMap.roadMapPdf;
+                  const fileName =
+                    pdfUrl.split("/").pop().split("?")[0] ||
+                    `roadmap-${index + 1}.pdf`;
+                  const label = roadMap.title || roadMap.name || fileName;
+
+                  return (
+                    <div
+                      key={`${fileName}-${index}`}
+                      className="rounded-3xl bg-slate-50 p-4 border border-slate-200 flex flex-col gap-3"
+                    >
+                      <div>
+                        <p className="text-sm text-slate-500">
+                          Roadmap {index + 1}
+                        </p>
+                        <p className="text-slate-800 font-medium">{label}</p>
+                      </div>
+                      <button
+                        className="inline-flex items-center justify-center rounded-3xl bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow hover:bg-blue-700 transition"
+                        type="button"
+                        onClick={() => openRoadmap(pdfUrl)}
+                      >
+                        Open
+                      </button>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
 
             <button
-              className="mt-4 w-full py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition"
-              onClick={(action) => onViewDetailClicked(action, item)}
+              className="w-full inline-flex items-center justify-center rounded-3xl bg-gradient-to-r from-blue-600 to-indigo-600 px-5 py-3 text-sm font-semibold text-white shadow hover:shadow-xl transition disabled:cursor-not-allowed disabled:opacity-70"
+              onClick={(event) => onViewDetailClicked(event, item)}
+              disabled={loading}
             >
-              View Roadmap
+              {loading ? "Loading roadmaps..." : "View Roadmaps"}
             </button>
           </div>
         </div>

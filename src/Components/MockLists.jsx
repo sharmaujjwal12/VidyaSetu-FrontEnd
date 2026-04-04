@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { getMockDetailsFromServer, getMockListFromServer } from "../services/Backend";
 import MockList from "./MockList";
-function MockLists({mockName,setSelectedMock}){
+function MockLists({mockName,setSelectedMock,setLoader}){
   let [mocks,setMocks] = useState([]);
   useEffect(()=>{
        const getMockDetail = (exam,duration,questions,marks)=>{
          setMocks(exam,duration,questions,marks)
+         setLoader(false);
       }
       getMockDetailsFromServer(getMockDetail,mockName);
   },[])

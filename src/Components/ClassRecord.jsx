@@ -7,9 +7,9 @@ import DynamicLoader from "./DynamicLoader";
 
 function ClassRecord() {
   const [totalCourses, setTotalCourses] = useState([]);
-  const [chapters,setChapters] = useState(false);
-  let [loader,setLoader] = useState(false);
-  let [examName, setExamName] = useState('');
+  const [chapters, setChapters] = useState(false);
+  let [loader, setLoader] = useState(false);
+  let [examName, setExamName] = useState("");
   const exams = (data) => {
     setTotalCourses(data.mock);
     setLoader(true);
@@ -19,17 +19,22 @@ function ClassRecord() {
   }, []);
   return (
     <div className="">
-       <div>
-      {loader===false && <DynamicLoader
-      />}
-    </div>
-    {chapters === true ? (
-      <Chapters examName={examName}/> ) : <div className="flex">
+      <div>{loader === false && <DynamicLoader />}</div>
+      {chapters === true ? (
+        <Chapters examName={examName} />
+      ) : (
+        <div className="flex flex-wrap">
           {" "}
           {totalCourses.map((item) => (
-            <RecordedClass key={item._id} item={item.name} setExamName={setExamName} setChapters={setChapters}/>
+              <RecordedClass
+                key={item._id}
+                item={item.name}
+                setExamName={setExamName}
+                setChapters={setChapters}
+              />
           ))}
-        </div>}
+        </div>
+      )}
     </div>
   );
 }

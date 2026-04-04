@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import logo from "./images/VidyaSetuBanner.jpg";
 
-function FreeTest({ item,setSelectedMock}) {
+function FreeTest({ item,setSelectedMock, setLoader}) {
   return (
     <div className="m-5">
           <div className="group overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
@@ -25,6 +25,7 @@ function FreeTest({ item,setSelectedMock}) {
           <div className="flex flex-col">
           <button className="w-62 rounded-xl bg-blue-500 px-4 py-2 text-white font-medium transition-all duration-300 hover:bg-blue-600 hover:shadow-md active:scale-95" onClick={()=> {
             setSelectedMock(item.name)
+            setLoader(true)
           }
             }>
             View Details
