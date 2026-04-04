@@ -38,7 +38,7 @@ function AttemptMock({ examName, setLoader }) {
     : 0;
 
   return questions.length <= nextQuestion ? (
-    <div className="flex justify-center items-center min-h-[60vh] px-4 py-8 bg-gradient-to-br from-slate-100 via-white to-slate-200">
+    <div className="flex justify-center items-center min-h-[60vh] px-4 py-8">
       <div className="w-full max-w-xl bg-white border border-gray-200 shadow-2xl rounded-3xl p-6 sm:p-8 text-center backdrop-blur-sm">
         <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-6 tracking-tight">
           Test Result
@@ -67,7 +67,7 @@ function AttemptMock({ examName, setLoader }) {
       </div>
     </div>
   ) : (
-    <div className="flex justify-center items-center min-h-[60vh] px-4 py-8 bg-gradient-to-br from-slate-100 via-white to-slate-200">
+    <div className="flex justify-center items-center min-h-[60vh] px-4 py-8">
       <div className="w-full max-w-3xl bg-white shadow-2xl rounded-3xl p-6 sm:p-8 border border-gray-200 transition-all duration-300">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between mb-6">
           <div>
@@ -82,7 +82,6 @@ function AttemptMock({ examName, setLoader }) {
             <p className="text-sm text-slate-500">
               {nextQuestion + 1} of {questions.length}
             </p>
-            <p className="text-lg font-medium text-slate-700">Score: {score}</p>
           </div>
         </div>
 
