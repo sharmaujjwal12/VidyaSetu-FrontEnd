@@ -5,7 +5,8 @@ function PaidMockList({ item,setSelectedMock}) {
   let [nextComponent,setNextComponent] = useState(false);
   let [examName,setExamName] = useState('');
   if(nextComponent){
-    return <AttemptPaidMock examName={examName}/>
+      console.log("PaidMockList Attempt Me me hu")
+      return <AttemptPaidMock examName={examName}/>
   }
   return (
     <div className="w-72 rounded-2xl border border-gray-200 bg-white p-5 shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
@@ -18,6 +19,7 @@ function PaidMockList({ item,setSelectedMock}) {
       <p className="text-sm text-gray-500 mb-4">
         Remaining Attempts - 1
       </p>
+      {console.log("PaidMockList me hu")}
 
       {/* Stats Section */}
       <div className="flex justify-between text-center mb-5">

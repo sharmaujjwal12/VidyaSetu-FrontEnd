@@ -5,15 +5,16 @@ function AttemptPaidMock({ examName }) {
   let [questions, setQuestions] = useState([]);
   useEffect(() => {
      if (!examName) return; // wait until examName is set
-    const mockQuestions = (data) => {
-      if (!data || data.length === 0) {
-      console.error("No questions received from backend!");
-      setQuestions([]);
-      return;
-    };
-    setQuestions(data.Questions);
+    const  questionsLists = (data) => {
+        console.log("Attempt me hu")
+    //   if (!data || data.length === 0) {
+    //   console.error("No questions received from backend!");
+    //   setQuestions([]);
+    //   return;
+    // };
+    setQuestions(data);
   }
-    getPaidMockListFromServer(examName, mockQuestions);
+    getPaidMockListFromServer(examName,  questionsLists);
   }, [examName]);
   let [selectedOption, setSelectedOption] = useState("");
   let [nextQuestion, setNextQuestion] = useState(0);
@@ -49,7 +50,7 @@ function AttemptPaidMock({ examName }) {
       <div className="w-[600px] bg-white shadow-xl rounded-2xl p-8 border border-gray-200">
         {/* Question */}
         <h1 className="text-xl font-semibold text-gray-800 mb-6">
-          {questions[nextQuestion].question}
+          {questions[nextQuestion]?.question}
         </h1>
 
         {/* Options */}
@@ -84,8 +85,8 @@ function AttemptPaidMock({ examName }) {
           <button
             className="px-6 py-2 bg-green-500 text-white font-medium rounded-lg hover:bg-green-600 active:scale-95 transition"
             onClick={() => {
-              console.log("Selected Options : ",selectedOption,questions[nextQuestion].correctAnswer )
-              if (questions[nextQuestion].correctAnswer === selectedOption) {
+              console.log("Selected Options : ",selectedOption,questions[nextQuestion]?.correctAnswer )
+              if (questions[nextQuestion]?.correctAnswer === selectedOption) {
                 setScore((prev) => prev + 1);
               }
               setNextQuestion((prev) => prev + 1);

@@ -5,6 +5,7 @@ function PaidMockLists({mockName,setSelectedMock}){
   let [mocks,setMocks] = useState([]);
   useEffect(()=>{
        const getMockDetail = (exam,duration,questions,marks)=>{
+        console.log("PaidMockLists me hu")
          setMocks(exam,duration,questions,marks)
       }
       getPaidMockDetailsFromServer(getMockDetail,mockName);

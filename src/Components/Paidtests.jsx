@@ -19,7 +19,7 @@ function PaidTests() {
     getPaidMockData(getMock);
   }, []);
   return (
-    <div className="flex flex-wrap">
+    <div className="flex flex-wrap justify-center items-center">
       <h1 className="w-full text-3xl font-bold text-gray-800 text-center mb-8 py-3 rounded-xl shadow-sm tracking-wide">
         📊 Paid Mock Tests
       </h1>
@@ -37,7 +37,7 @@ function PaidTests() {
           setSelectedMock={setSelectedMock}
         />
       ) : (
-        <div className="flex flex-wrap">
+        <div className="flex flex-wrap justify-center items-center">
           {mockData.map((item) => (
             <PaidTest
               key={item._id}
