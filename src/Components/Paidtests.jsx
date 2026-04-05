@@ -23,13 +23,13 @@ function PaidTests() {
       <h1 className="w-full text-3xl font-bold text-gray-800 text-center mb-8 py-3 rounded-xl shadow-sm tracking-wide">
         📊 Paid Mock Tests
       </h1>
-      <div className="flex flex-col justify-center items-center">
-        {loader === false && <DynamicLoader/>}
-      </div>
-      {showPayment ? (
+
+        {loader === false ?( <DynamicLoader/>) :
+      showPayment ? (
         <PaymentPage
           selectedMock={selectedMock}
           setShowPayment={setShowPayment}
+          setLoader={setLoader}
         />
       ) : selectedMock ? (
         <PaidMockLists
@@ -44,6 +44,7 @@ function PaidTests() {
               item={item}
               setSelectedMock={setSelectedMock}
               setShowPayment={setShowPayment}
+              setLoader={setLoader}
             />
           ))}
         </div>

@@ -4,6 +4,7 @@ import { getMockListFromServer } from "../services/Backend";
 function AttemptMock({ examName, setLoader }) {
   let [questions, setQuestions] = useState([]);
   useEffect(() => {
+    console.log("Free Attempt Loaded")
     const mockQuestions = (data) => {
       console.log("Data1 : ", data);
       console.log("Data2 : ", data[0]);

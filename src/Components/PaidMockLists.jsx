@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getPaidMockDetailsFromServer} from "../services/Backend";
 import MockList from "./MockList";
+import PaidMockList from "./PaidMockList";
 function PaidMockLists({mockName,setSelectedMock}){
   let [mocks,setMocks] = useState([]);
   useEffect(()=>{
@@ -11,7 +12,7 @@ function PaidMockLists({mockName,setSelectedMock}){
       getPaidMockDetailsFromServer(getMockDetail,mockName);
   },[])
   return <>
-  {mocks.map((item,index) => <MockList key={index} item={item} setSelectedMock={setSelectedMock}/>)}
+  {mocks.map((item,index) => <PaidMockList key={index} item={item} setSelectedMock={setSelectedMock}/>)}
   </>
 }
 
