@@ -9,9 +9,9 @@ function SignUp({ signUpClicked, signUpErrors }) {
   let email = useRef();
   let password = useRef();
   let confirmPassword = useRef();
-  let gender = useRef();
-  let role = useRef();
-  let [loader,setLoader] = useState(false);
+  let [selectedGender, setSelectedGender] = useState("");
+  let [selectedRole, setSelectedRole] = useState("");
+  let [loader, setLoader] = useState(false);
 
   const onSignUpClicked = (action) => {
     action.preventDefault();
@@ -22,8 +22,7 @@ function SignUp({ signUpClicked, signUpErrors }) {
       email.current.value,
       password.current.value,
       confirmPassword.current.value,
-      gender.current.value,
-      role.current.value,
+      selectedGender,selectedRole
     );
   };
 
@@ -152,17 +151,12 @@ function SignUp({ signUpClicked, signUpErrors }) {
 
             <div className="flex flex-wrap gap-6">
               <label className="flex items-center gap-2 text-sm">
-                <input
-                  type="radio"
-                  ref={gender}
-                  name="gender"
-                  value="male"
-                />
+                <input type="radio" name="gender" value="male" onChange={(e)=>setSelectedGender(e.target.value)} />
                 Male
               </label>
 
               <label className="flex items-center gap-2 text-sm">
-                <input type="radio" ref={gender} name="gender" value="female" />
+                <input type="radio" name="gender" value="female" onChange={(e)=>setSelectedGender(e.target.value)} />
                 Female
               </label>
             </div>
@@ -175,17 +169,12 @@ function SignUp({ signUpClicked, signUpErrors }) {
 
             <div className="flex flex-wrap gap-6">
               <label className="flex items-center gap-2 text-sm">
-                <input
-                  type="radio"
-                  ref={role}
-                  name="role"
-                  value="user"
-                />
+                <input type="radio" name="role" value="user" onChange={(e)=>setSelectedRole(e.target.value)}/>
                 User
               </label>
 
               <label className="flex items-center gap-2 text-sm">
-                <input type="radio" ref={role} name="role" value="host" />
+                <input type="radio" name="role" value="host"  onChange={(e)=>setSelectedRole(e.target.value)}/>
                 Host
               </label>
             </div>
@@ -194,7 +183,7 @@ function SignUp({ signUpClicked, signUpErrors }) {
           <button
             type="submit"
             onClick={(action) => {
-              onSignUpClicked(action)
+              onSignUpClicked(action);
               setLoader(true);
             }}
             className="w-full rounded-xl bg-indigo-500 
