@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { getPaidMockListFromServer } from "../services/Backend";
+import DynamicLoader from "./DynamicLoader";
 
 function AttemptPaidMock({ examName }) {
   let [questions, setQuestions] = useState([]);
+  let [loader, setLoader] = useState(true);
   useEffect(() => {
     console.log("Paid Attempt Loaded");
     if (!examName) return; // wait until examName is set
@@ -11,9 +13,11 @@ function AttemptPaidMock({ examName }) {
       if (!data || data.length === 0) {
         console.error("No questions received from backend!");
         setQuestions([]);
+        setLoader(false);
         return;
       }
       setQuestions(data);
+      setLoader(false);
     };
     getPaidMockListFromServer(examName, questionsLists);
   }, [examName]);
@@ -119,6 +123,13 @@ function AttemptPaidMock({ examName }) {
       </div>
     </div>
   );
+  if (loader) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <DynamicLoader />
+      </div>
+    );
+  }
 
   return questions.length <= nextQuestion ? (
     <ResultScreen />
