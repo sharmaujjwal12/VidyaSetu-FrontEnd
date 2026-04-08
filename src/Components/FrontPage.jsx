@@ -62,7 +62,7 @@ function FrontPage({ title,latestNewsHandler,motivationHandler,setLiveClassClick
           </div>
         </div>
 
-        {/* Live Class */}
+        {/* Live Class
         <div className="bg-white w-64 rounded-2xl shadow-md hover:shadow-xl transition duration-300 mr-20 ml-10 hover:-translate-y-2 overflow-hidden">
           <img src={liveClassLogo} alt="Live Class" className="h-40 w-full object-cover" />
           <div className="p-4 text-center">
@@ -76,7 +76,7 @@ function FrontPage({ title,latestNewsHandler,motivationHandler,setLiveClassClick
               Click to View
             </button>
           </div>
-        </div>
+        </div> */}
 
         {/* MockTests */}
         <div className="bg-white w-64 rounded-2xl shadow-md hover:shadow-xl transition duration-300 mr-20 ml-10 hover:-translate-y-2 overflow-hidden">

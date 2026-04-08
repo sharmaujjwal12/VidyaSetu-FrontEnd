@@ -140,12 +140,12 @@ function SideBar({
                 label="Home"
               />
 
-              <SideNavItem
+              {/* <SideNavItem
                 active={liveClass === true}
                 onClick={liveClassHandler}
                 icon="#speedometer2"
                 label="Live Class"
-              />
+              /> */}
 
               <SideNavItem
                 active={paidTest === true}
