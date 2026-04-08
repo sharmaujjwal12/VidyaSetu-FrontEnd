@@ -20,7 +20,7 @@ function StudyItems({latestNewsHandler,motivationHandler,roadMapHandler}) {
      {liveClassClicked && <VideosPage examName={pageType}/>}
      {recordedClassClicked===true && <Chapters examName={pageType}/>}
      {mockClicked && <MockLists mockName={pageType}/>}
-    {submitClick ? <FrontPage title={pageType} latestNewsHandler={latestNewsHandler} motivationHandler={motivationHandler}  setSubmitClick={setSubmitClick} setMainPage={setMainPage} roadMapHandler={roadMapHandler} setMockClicked={setMockClicked} setLiveClassClicked={setLiveClassClicked} setRecordedClass={setRecordedClass}/> : (mainPage===true && <div className="flex flex-wrap">  {studyMaterial.map(item=><StudyItem item={item} setSubmitClick={setSubmitClick} setPageType={setPageType}/>)}</div>)}
+    {submitClick ? <FrontPage title={pageType} latestNewsHandler={latestNewsHandler} motivationHandler={motivationHandler}  setSubmitClick={setSubmitClick} setMainPage={setMainPage} roadMapHandler={roadMapHandler} setMockClicked={setMockClicked} setLiveClassClicked={setLiveClassClicked} setRecordedClass={setRecordedClass}/> : (mainPage===true && <div className="flex flex-wrap m-5">  {studyMaterial.map(item=><StudyItem item={item} setSubmitClick={setSubmitClick} setPageType={setPageType}/>)}</div>)}
     </>
   );
 }
