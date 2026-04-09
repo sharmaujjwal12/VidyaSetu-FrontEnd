@@ -4,13 +4,14 @@ import VideosPage from "./VideosPage";
 import { useEffect } from "react";
 import { getLectureDetailsFromServer } from "../services/Backend";
 
-function Chapters({examName}){
+function Chapters({examName,setLoader}){
     let [vidoesPage, setVideosPage] = useState(false);
     let [lectureDetails, setLectureDetails] = useState([]);
     let [lectureType, setLectureType] = useState('');
     useEffect(()=>{
       const getDetails=(data)=>{
         setLectureDetails(data);
+        setLoader(false)
       }
       getLectureDetailsFromServer(examName,getDetails)
     },[])

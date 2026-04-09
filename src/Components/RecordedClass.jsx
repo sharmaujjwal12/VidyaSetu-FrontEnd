@@ -1,7 +1,7 @@
 import { useState } from "react";
 import logo from "./images/VidyaSetuBanner.jpg";
 
-function RecordedClass({ item, setExamName,setChapters }) {
+function RecordedClass({ item, setExamName,setChapters,setLoader}) {
   return (
     <div className="flex flex-col justify-center p-6">
       {/* Card */}
@@ -28,6 +28,7 @@ function RecordedClass({ item, setExamName,setChapters }) {
             onClick={() => {
              setChapters(true);
               setExamName(item);
+              setLoader(true);
             }}
           >
             View Details →

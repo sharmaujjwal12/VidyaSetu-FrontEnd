@@ -12,16 +12,17 @@ function ClassRecord() {
   let [examName, setExamName] = useState("");
   const exams = (data) => {
     setTotalCourses(data.mock);
-    setLoader(true);
+    setLoader(false);
   };
   useEffect(() => {
     getMockData(exams);
+    setLoader(true);
   }, []);
   return (
     <div className="">
-      <div>{loader === false && <DynamicLoader />}</div>
+      {loader === true && <DynamicLoader />}
       {chapters === true ? (
-        <Chapters examName={examName} />
+        <Chapters examName={examName} setLoader={setLoader}/>
       ) : (
         <div className="flex flex-wrap">
           {" "}
@@ -31,6 +32,7 @@ function ClassRecord() {
                 item={item.name}
                 setExamName={setExamName}
                 setChapters={setChapters}
+                setLoader={setLoader}
               />
           ))}
         </div>
