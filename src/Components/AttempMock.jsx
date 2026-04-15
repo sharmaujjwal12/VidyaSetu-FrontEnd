@@ -4,7 +4,7 @@ import { getMockListFromServer } from "../services/Backend";
 function AttemptMock({ examName, setLoader }) {
   let [questions, setQuestions] = useState([]);
   useEffect(() => {
-    console.log("Free Attempt Loaded")
+    console.log("Free Attempt Loaded");
     const mockQuestions = (data) => {
       console.log("Data1 : ", data);
       console.log("Data2 : ", data[0]);
@@ -39,31 +39,56 @@ function AttemptMock({ examName, setLoader }) {
     : 0;
 
   return questions.length <= nextQuestion ? (
-    <div className="flex justify-center items-center min-h-[60vh] px-4 py-8">
-      <div className="w-full max-w-xl bg-white border border-gray-200 shadow-2xl rounded-3xl p-6 sm:p-8 text-center backdrop-blur-sm">
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-6 tracking-tight">
-          Test Result
-        </h1>
-
-        <div className="bg-blue-50 border border-blue-200 rounded-3xl p-5 mb-5">
-          <p className="text-gray-600 text-sm mb-2 uppercase tracking-[0.2em]">
-            Your Score
-          </p>
-          <h2 className="text-4xl font-bold text-blue-600">
-            {score} / {questions.length}
-          </h2>
+    <div className="flex justify-center items-center min-h-[60vh] px-4 py-8 bg-gradient-to-br from-slate-50 via-white to-blue-50">
+      <div className="w-full max-w-2xl bg-gradient-to-br from-white to-slate-50 border-2 border-gradient-to-r from-blue-200 to-emerald-200 shadow-2xl rounded-3xl p-6 sm:p-10 md:p-12 text-center backdrop-blur-sm">
+        <div className="mb-8">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold bg-gradient-to-r from-blue-600 to-emerald-600 bg-clip-text text-transparent mb-2 tracking-tight">
+            Test Result
+          </h1>
+          <div className="h-1 w-24 bg-gradient-to-r from-blue-500 to-emerald-500 rounded-full mx-auto"></div>
         </div>
 
-        <div className="bg-emerald-50 border border-emerald-200 rounded-3xl p-5">
-          <p className="text-gray-600 text-sm mb-2 uppercase tracking-[0.2em]">
-            Percentile
-          </p>
-          <h2 className="text-4xl font-bold text-emerald-600">
-            {questions.length
-              ? Math.round((score / questions.length) * 100)
-              : 0}
-            %
-          </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 my-8">
+          <div className="bg-gradient-to-br from-blue-50 to-blue-100 border-2 border-blue-300 rounded-3xl p-6 sm:p-8 shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:scale-105">
+            <p className="text-gray-600 text-xs sm:text-sm mb-3 uppercase font-semibold tracking-widest">
+              📊 Your Score
+            </p>
+            <h2 className="text-5xl sm:text-6xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
+              {score}
+            </h2>
+            <p className="text-gray-600 text-sm sm:text-base mt-2 font-medium">
+              out of {questions.length}
+            </p>
+          </div>
+
+          <div className="bg-gradient-to-br from-emerald-50 to-emerald-100 border-2 border-emerald-300 rounded-3xl p-6 sm:p-8 shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:scale-105">
+            <p className="text-gray-600 text-xs sm:text-sm mb-3 uppercase font-semibold tracking-widest">
+              🎯 Percentile
+            </p>
+            <h2 className="text-5xl sm:text-6xl font-bold bg-gradient-to-r from-emerald-600 to-emerald-800 bg-clip-text text-transparent">
+              {questions.length
+                ? Math.round((score / questions.length) * 100)
+                : 0}
+              %
+            </h2>
+            <p className="text-gray-600 text-sm sm:text-base mt-2 font-medium">
+              Success Rate
+            </p>
+          </div>
+        </div>
+
+        <div className="mt-8 pt-6 border-t-2 border-gray-200">
+          <div className="bg-gradient-to-r from-blue-100 to-emerald-100 rounded-3xl p-4 sm:p-6">
+            <p className="text-gray-700 font-semibold text-sm sm:text-base">
+              {score >= questions.length * 0.8
+                ? "🌟 Excellent performance! You've mastered this topic!"
+                : score >= questions.length * 0.6
+                  ? "👍 Good job! Keep practicing to improve further."
+                  : score >= questions.length * 0.4
+                    ? "📚 Nice effort! Review the concepts and try again."
+                    : "💪 Keep learning! Practice makes perfect."}
+            </p>
+          </div>
         </div>
       </div>
     </div>

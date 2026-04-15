@@ -11,10 +11,10 @@ function MockList({ item, setSelectedMock }) {
     <>
       {loader && <DynamicLoader />}
 
-      {nextComponent ? (
-        <AttemptMock examName={examName} setLoader={setLoader} />
+      {nextComponent ? (<div className="flex flex-col justify-center items-center">
+        <AttemptMock examName={examName} setLoader={setLoader}/></div>
       ) : (
-        <div className="w-72 rounded-2xl border border-gray-200 bg-white p-5 shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+        <div className="flex flex-col item-center justify-center w-72 rounded-2xl border border-gray-200 bg-white p-5 shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
           
           {/* Exam Title */}
           <h1 className="text-lg font-semibold text-gray-800 mb-1">

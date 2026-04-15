@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
 import { getVideosFromServer } from "../services/Backend";
+import DynamicLoader from "./DynamicLoader";
 
 function VideosPage({ examName,lectureType }) {
   let [video, setVideo] = useState([]);
+  let [loader, setLoader] = useState(true);
   let [videoSeries, setVideoSeries] = useState(1);
 
   useEffect(() => {
     const videosMethod = (data) => {
       setVideo(data);
+      setLoader(false);
     };
     getVideosFromServer(examName,lectureType, videosMethod);
   }, [examName]);
@@ -19,7 +22,7 @@ function VideosPage({ examName,lectureType }) {
       <h1 className="text-2xl font-semibold text-gray-800 mb-6 text-center">
         {examName} Videos
       </h1>
-
+      {loader===true && <DynamicLoader/>}
       {/* Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         
